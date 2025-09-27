@@ -1,4 +1,4 @@
-# Get All Shell Folder Shortcuts Script (Aka "Super God Mode")
+﻿# Get All Shell Folder Shortcuts Script (Aka "Super God Mode")
 #
 # Author: ThioJoe
 # GitHub Repo: https://github.com/ThioJoe/Windows-Super-God-Mode
@@ -222,22 +222,22 @@ function Show-SuperGodModeDialog {
     # Define tooltips here for easy editing
     $tooltips = @{
         # Use &#x0a; for line breaks in the tooltip text
-        DontGroupTasks = "Prevent grouping task shortcuts, meaning the application name won't be &#x0a;prepended to the task name in the shortcut file"
-        UseAlternativeCategoryNames = "Looks up alternative category names for task links to prepend to the task names"
-        AllURLProtocols = "When creating shortcuts to URL protocols like 'ms-settings://', include third party &#x0a;URL protocols from installed software, not just Microsoft or system protocols"
-        CollectExtraURLProtocolInfo = "Collects extra information about URL protocols that goes into the CSV spreadsheet. &#x0a;Optional because it is not used in the shortcuts and takes slightly longer."
-        KeepPreviousOutputFolders = "Doesn't delete existing output folders before running the script. &#x0a;It will still overwrite any existing shortcuts if being created again."
-        CollectStatistics = "Create the statistics folder and files containing CSV data about the shell folders &#x0a;and tasks and XML files with other collected data"
-        AllowDuplicateDeepLinks = "Allow the creation of Deep Links that are the same as an existing Task Link. &#x0a;By default, such duplicates are not included in the Deep Links folder."
-        CollectCLSID = "Create shortcuts for shell folders based on CLSIDs"
-        CollectNamedFolders = "Create shortcuts for named special folders"
-        CollectTaskLinks = "Create shortcuts for task links (sub-pages within shell folders and control panel menus)"
-        CollectMSSettings = "Create shortcuts for ms-settings: links (system settings pages)"
-        CollectDeepLinks = "Create shortcuts for deep links (direct links to various settings menus across Windows)"
-        CollectURLProtocols = "Create shortcuts for URL protocols (e.g., ms-settings:, etc.)"
-        CollectAppxLinks = "Create shortcuts for hidden sub-page URL links for apps (e.g., ms-clock://pausefocustimer, etc.) &#x0a;Note: Requires collecting URL Protocol Links"
-        DeepScanHiddenLinks = "Scans all files in the installation directory of non-appx-package apps for hidden links. &#x0a;Otherwise only the primary binary file will be searched. &#x0a;&#x0a;Note: This wll be MUCH slower. &#x0a;Also Note: Not to be confused with &quot;Deep Links&quot;."
-        LoggingLevel = "Select the level of detail shown in the console window during runtime:&#x0a; - Standard: Normal logging&#x0a; - Verbose: More detailed logging&#x0a; - Debug: Maximum detail, also creates some log files."
+        DontGroupTasks = "防止对任务快捷方式进行分组，&#x0a;这意味着应用程序名称不会添加到快捷方式文件中的任务名称之前"
+        UseAlternativeCategoryNames = "查找任务链接的替代类别名称，以便将其添加到任务名称之前"
+        AllURLProtocols = "创建指向 URL 协议的快捷方式时，例如 'ms-settings://', &#x0a;包括来自已安装软件的第三方 URL 协议，而不仅仅是 Microsoft 或系统协议"
+        CollectExtraURLProtocolInfo = "收集有关 URL 协议的额外信息，这些信息将进入 CSV 电子表格。 &#x0a;可选，因为它不用于快捷方式，并且需要稍长时间。"
+        KeepPreviousOutputFolders = "在运行脚本之前不删除现有输出文件夹。 &#x0a;如果再次创建，将仍然覆盖任何现有快捷方式。"
+        CollectStatistics = "创建统计文件夹和文件，其中包含有关 shell 文件夹的 CSV 数据 &#x0a;和任务以及其他收集数据的 XML 文件"
+        AllowDuplicateDeepLinks = "允许创建与现有任务链接相同的深度链接。 &#x0a;默认情况下，此类重复项不包括在深度链接文件夹中。"
+        CollectCLSID = "根据 CLSID 创建 shell 文件夹的快捷方式"
+        CollectNamedFolders = "为命名的特殊文件夹创建快捷方式"
+        CollectTaskLinks = "为任务链接（shell 文件夹和控制面板菜单中的子页面）创建快捷方式"
+        CollectMSSettings = "为 ms-settings: 链接（系统设置页面）创建快捷方式"
+        CollectDeepLinks = "为深度链接（直接链接到 Windows 各种设置菜单）创建快捷方式"
+        CollectURLProtocols = "为 URL 协议（例如，ms-settings: 等）创建快捷方式"
+        CollectAppxLinks = "为应用程序的隐藏子页面 URL 链接创建快捷方式（例如，ms-clock://pausefocustimer 等） &#x0a;注意：需要收集 URL 协议链接"
+        DeepScanHiddenLinks = "扫描非 appx 包应用程序的安装目录中的所有文件以查找隐藏链接。 &#x0a;否则只会搜索主要的二进制文件。 &#x0a;&#x0a;注意：这将慢得多。 &#x0a;另请注意：不要与 &quot;深度链接&quot; 混淆。"
+        LoggingLevel = "选择在运行时控制台窗口中显示的详细程度：&#x0a; - 标准：正常日志记录&#x0a; - 详细：更详细的日志记录&#x0a; - 调试：最大详细信息，还会创建一些日志文件。"
     }
 
     Add-Type -AssemblyName PresentationFramework
@@ -247,7 +247,8 @@ function Show-SuperGodModeDialog {
     <Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Super God Mode Options" Height="715" Width="800">
+        Title="Super God Mode 选项" Height="715" Width="800"
+        FontFamily="Microsoft YaHei">
         <Window.Resources>
             <Color x:Key="BackgroundColor">#1E1E1E</Color>
             <Color x:Key="ForegroundColor">#CCCCCC</Color>
@@ -342,10 +343,10 @@ function Show-SuperGodModeDialog {
             <Border Background="{StaticResource AccentBrush}" Grid.Row="0">
                 <Grid>
                     <StackPanel>
-                        <TextBlock Text="&quot;Super God Mode&quot; Script" FontSize="24" Foreground="White" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                        <TextBlock Text="For Windows" FontSize="16" Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                        <TextBlock Text="&quot;Super God Mode&quot; 脚本" FontSize="24" Foreground="White" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                        <TextBlock Text="适用于 Windows" FontSize="16" Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,10"/>
                     </StackPanel>
-                    <Button x:Name="btnAbout" Content="About" Style="{StaticResource SubtleButtonStyle}"
+                    <Button x:Name="btnAbout" Content="关于" Style="{StaticResource SubtleButtonStyle}"
                             HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0"/>
                 </Grid>
             </Border>
@@ -359,7 +360,7 @@ function Show-SuperGodModeDialog {
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Hover over settings for details" FontStyle="Italic" HorizontalAlignment="Right" Margin="0,0,0,10" Grid.Row="0" Foreground="{StaticResource ForegroundBrush}"/>
+                    <TextBlock Text="将鼠标悬停在设置上以查看详细信息" FontStyle="Italic" HorizontalAlignment="Right" Margin="0,0,0,10" Grid.Row="0" Foreground="{StaticResource ForegroundBrush}"/>
 
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
@@ -367,34 +368,34 @@ function Show-SuperGodModeDialog {
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <GroupBox Header="Alternative Options" Grid.Column="0" Style="{StaticResource DarkModeGroupBoxStyle}">
+                        <GroupBox Header="可选项" Grid.Column="0" Style="{StaticResource DarkModeGroupBoxStyle}">
                             <StackPanel Margin="5">
-                                <CheckBox x:Name="chkDontGroupTasks" Content="Task Links:    Don't Group Task Links" Margin="0,5,0,0" Foreground="{StaticResource ForegroundBrush}">
+                                <CheckBox x:Name="chkDontGroupTasks" Content="任务链接:    不分组任务链接" Margin="0,5,0,0" Foreground="{StaticResource ForegroundBrush}">
                                     <CheckBox.ToolTip>
                                         <ToolTip Content="$($tooltips.DontGroupTasks)" />
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox x:Name="chkUseAlternativeCategoryNames" Content="Task Links:    Use Alternative Category Names" Margin="0,5,0,0" Foreground="{StaticResource ForegroundBrush}">
+                                <CheckBox x:Name="chkUseAlternativeCategoryNames" Content="任务链接:    使用替代类别名称" Margin="0,5,0,0" Foreground="{StaticResource ForegroundBrush}">
                                     <CheckBox.ToolTip>
                                         <ToolTip Content="$($tooltips.UseAlternativeCategoryNames)" />
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                               <CheckBox x:Name="chkAllowDuplicateDeepLinks" Content="Deep Links:  Allow Duplicate Deep Links" Margin="0,5,0,0" Foreground="{StaticResource ForegroundBrush}">
+                               <CheckBox x:Name="chkAllowDuplicateDeepLinks" Content="深度链接:  允许复制深度链接" Margin="0,5,0,0" Foreground="{StaticResource ForegroundBrush}">
                                     <CheckBox.ToolTip>
                                         <ToolTip Content="$($tooltips.AllowDuplicateDeepLinks)" />
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox x:Name="chkAllURLProtocols" Content="Protocols:     Include third-party app URL Protocols" Margin="0,5,0,0" Foreground="{StaticResource ForegroundBrush}">
+                                <CheckBox x:Name="chkAllURLProtocols" Content="协议:     包括第三方应用程序URL协议" Margin="0,5,0,0" Foreground="{StaticResource ForegroundBrush}">
                                     <CheckBox.ToolTip>
                                         <ToolTip Content="$($tooltips.AllURLProtocols)" />
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox x:Name="chkCollectExtraURLProtocolInfo" Content="Protocols:     Collect Extra URL Protocol Info" Margin="0,5,0,0" Foreground="{StaticResource ForegroundBrush}">
+                                <CheckBox x:Name="chkCollectExtraURLProtocolInfo" Content="协议:     收集额外的 URL 协议信息" Margin="0,5,0,0" Foreground="{StaticResource ForegroundBrush}">
                                     <CheckBox.ToolTip>
                                         <ToolTip Content="$($tooltips.CollectExtraURLProtocolInfo)" />
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox x:Name="chkDeepScanHiddenLinks" Content="Protocols:     Deeper Scan For Hidden Links (Slow)" Margin="0,5,0,0" Foreground="{StaticResource ForegroundBrush}">
+                                <CheckBox x:Name="chkDeepScanHiddenLinks" Content="协议:     深度扫描隐藏链接（慢）" Margin="0,5,0,0" Foreground="{StaticResource ForegroundBrush}">
                                     <CheckBox.ToolTip>
                                         <ToolTip Content="$($tooltips.DeepScanHiddenLinks)" />
                                     </CheckBox.ToolTip>
@@ -402,7 +403,7 @@ function Show-SuperGodModeDialog {
                             </StackPanel>
                         </GroupBox>
 
-                        <GroupBox Header="Control Outputs" Grid.Column="1" Style="{StaticResource DarkModeGroupBoxStyle}">
+                        <GroupBox Header="输出控制" Grid.Column="1" Style="{StaticResource DarkModeGroupBoxStyle}">
                             <Grid Margin="5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -415,42 +416,42 @@ function Show-SuperGodModeDialog {
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
 
-                                <CheckBox x:Name="chkCollectStatistics" Content="Collect Statistics  &#128202;" IsChecked="True" Margin="0,5,5,5" Grid.Column="0" Grid.Row="0" Style="{StaticResource HighlightedCheckBoxStyle}">
+                                <CheckBox x:Name="chkCollectStatistics" Content="收集统计信息  &#128202;" IsChecked="True" Margin="0,5,5,5" Grid.Column="0" Grid.Row="0" Style="{StaticResource HighlightedCheckBoxStyle}">
                                     <CheckBox.ToolTip>
                                         <ToolTip Content="$($tooltips.CollectStatistics)" />
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox x:Name="chkCollectCLSID" Content="CLSID Links" IsChecked="True" Margin="5,5,0,5" Grid.Column="1" Grid.Row="0" Foreground="{StaticResource ForegroundBrush}">
+                                <CheckBox x:Name="chkCollectCLSID" Content="CLSID 链接" IsChecked="True" Margin="5,5,0,5" Grid.Column="1" Grid.Row="0" Foreground="{StaticResource ForegroundBrush}">
                                     <CheckBox.ToolTip>
                                         <ToolTip Content="$($tooltips.CollectCLSID)" />
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox x:Name="chkCollectNamedFolders" Content="Named Folders Links" IsChecked="True" Margin="0,5,5,5" Grid.Column="0" Grid.Row="1" Foreground="{StaticResource ForegroundBrush}">
+                                <CheckBox x:Name="chkCollectNamedFolders" Content="命名文件夹链接" IsChecked="True" Margin="0,5,5,5" Grid.Column="0" Grid.Row="1" Foreground="{StaticResource ForegroundBrush}">
                                     <CheckBox.ToolTip>
                                         <ToolTip Content="$($tooltips.CollectNamedFolders)" />
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox x:Name="chkCollectTaskLinks" Content="Task Links" IsChecked="True" Margin="5,5,0,5" Grid.Column="1" Grid.Row="1" Foreground="{StaticResource ForegroundBrush}">
+                                <CheckBox x:Name="chkCollectTaskLinks" Content="任务链接" IsChecked="True" Margin="5,5,0,5" Grid.Column="1" Grid.Row="1" Foreground="{StaticResource ForegroundBrush}">
                                     <CheckBox.ToolTip>
                                         <ToolTip Content="$($tooltips.CollectTaskLinks)" />
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox x:Name="chkCollectMSSettings" Content="MS-Settings Links" IsChecked="True" Margin="0,5,5,5" Grid.Column="0" Grid.Row="2" Foreground="{StaticResource ForegroundBrush}">
+                                <CheckBox x:Name="chkCollectMSSettings" Content="MS-Settings 链接" IsChecked="True" Margin="0,5,5,5" Grid.Column="0" Grid.Row="2" Foreground="{StaticResource ForegroundBrush}">
                                     <CheckBox.ToolTip>
                                         <ToolTip Content="$($tooltips.CollectMSSettings)" />
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox x:Name="chkCollectDeepLinks" Content="Deep Links" IsChecked="True" Margin="5,5,0,5" Grid.Column="1" Grid.Row="2" Foreground="{StaticResource ForegroundBrush}">
+                                <CheckBox x:Name="chkCollectDeepLinks" Content="深度链接" IsChecked="True" Margin="5,5,0,5" Grid.Column="1" Grid.Row="2" Foreground="{StaticResource ForegroundBrush}">
                                     <CheckBox.ToolTip>
                                         <ToolTip Content="$($tooltips.CollectDeepLinks)" />
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox x:Name="chkCollectURLProtocols" Content="URL Protocols Links" IsChecked="True" Margin="0,5,5,5" Grid.Column="0" Grid.Row="3" Foreground="{StaticResource ForegroundBrush}">
+                                <CheckBox x:Name="chkCollectURLProtocols" Content="URL 协议链接" IsChecked="True" Margin="0,5,5,5" Grid.Column="0" Grid.Row="3" Foreground="{StaticResource ForegroundBrush}">
                                     <CheckBox.ToolTip>
                                         <ToolTip Content="$($tooltips.CollectURLProtocols)" />
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox x:Name="chkCollectAppxLinks" Content="Hidden App Links" IsChecked="True" Margin="5,5,0,5" Grid.Column="1" Grid.Row="3" Foreground="{StaticResource ForegroundBrush}" Style="{StaticResource CustomCheckBoxStyle}" ToolTipService.ShowOnDisabled="True">
+                                <CheckBox x:Name="chkCollectAppxLinks" Content="隐藏应用链接" IsChecked="True" Margin="5,5,0,5" Grid.Column="1" Grid.Row="3" Foreground="{StaticResource ForegroundBrush}" Style="{StaticResource CustomCheckBoxStyle}" ToolTipService.ShowOnDisabled="True">
                                     <CheckBox.ToolTip>
                                         <ToolTip Content="$($tooltips.CollectAppxLinks)" />
                                     </CheckBox.ToolTip>
@@ -459,44 +460,44 @@ function Show-SuperGodModeDialog {
                         </GroupBox>
                     </Grid>
 
-                    <GroupBox Header="Output Location" Grid.Row="2" Style="{StaticResource DarkModeGroupBoxStyle}">
+                    <GroupBox Header="输出目录" Grid.Row="2" Style="{StaticResource DarkModeGroupBoxStyle}">
                         <StackPanel Margin="5">
-                            <CheckBox x:Name="chkKeepPreviousOutputFolders" Content="Don't Auto-Delete Existing Output Folders" Margin="0,5,0,0" Foreground="{StaticResource ForegroundBrush}">
+                            <CheckBox x:Name="chkKeepPreviousOutputFolders" Content="不自动删除现有输出文件夹" Margin="0,5,0,0" Foreground="{StaticResource ForegroundBrush}">
                                 <CheckBox.ToolTip>
                                     <ToolTip Content="$($tooltips.KeepPreviousOutputFolders)" />
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <TextBlock Text="Output Directory:" Margin="0,10,0,5" Foreground="{StaticResource ForegroundBrush}"/>
+                            <TextBlock Text="输出目录:" Margin="0,10,0,5" Foreground="{StaticResource ForegroundBrush}"/>
                             <DockPanel LastChildFill="True" Margin="0,0,0,5">
-                                <Button x:Name="btnBrowse" Content="Browse" DockPanel.Dock="Right" Margin="5,0,0,0" Padding="10,5" FontSize="14" MinWidth="100" Background="{StaticResource SecondaryBackgroundBrush}" Foreground="{StaticResource ForegroundBrush}"/>
+                                <Button x:Name="btnBrowse" Content="浏览" DockPanel.Dock="Right" Margin="5,0,0,0" Padding="10,5" FontSize="14" MinWidth="100" Background="{StaticResource SecondaryBackgroundBrush}" Foreground="{StaticResource ForegroundBrush}"/>
                                 <TextBox x:Name="txtOutputPath" IsReadOnly="True" Padding="5,0,0,0" VerticalContentAlignment="Center" FontSize="14" Height="30" Background="{StaticResource SecondaryBackgroundBrush}" Foreground="{StaticResource ForegroundBrush}"/>
                             </DockPanel>
-                            <TextBlock Text="Output Folder Name:" Margin="0,5,0,5" Foreground="{StaticResource ForegroundBrush}"/>
+                            <TextBlock Text="输出文件夹名称:" Margin="0,5,0,5" Foreground="{StaticResource ForegroundBrush}"/>
                             <TextBox x:Name="txtOutputFolderName" Margin="0,0,0,5" Padding="5,0,0,0" VerticalContentAlignment="Center" FontSize="14" Height="30" Background="{StaticResource SecondaryBackgroundBrush}" Foreground="{StaticResource ForegroundBrush}"/>
                             <Separator Margin="0,10,0,10" Background="{StaticResource BorderBrush}"/>
-                            <TextBlock Text="Final Output Path:" Margin="0,5,0,5" FontWeight="Bold" Foreground="{StaticResource ForegroundBrush}"/>
+                            <TextBlock Text="最终输出路径:" Margin="0,5,0,5" FontWeight="Bold" Foreground="{StaticResource ForegroundBrush}"/>
                             <TextBlock x:Name="txtCurrentPath" Text="" Margin="0,0,0,10" TextWrapping="Wrap" FontWeight="Bold" Foreground="{StaticResource ForegroundBrush}"/>
                         </StackPanel>
                     </GroupBox>
 
                     <StackPanel Grid.Row="3">
-                        <Button x:Name="btnOK" Content="Run Script" Width="Auto" Height="Auto" FontSize="14" HorizontalAlignment="Center" Margin="0,10,0,10" Padding="10,5" Background="{StaticResource AccentBrush}" Foreground="White"/>
-                        <TextBlock Text="All settings are optional - Leave them alone to use defaults" FontWeight="Bold" Foreground="{StaticResource WarningBrush}" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                        <Button x:Name="btnOK" Content="运行脚本" Width="Auto" Height="Auto" FontSize="14" HorizontalAlignment="Center" Margin="0,10,0,10" Padding="10,5" Background="{StaticResource AccentBrush}" Foreground="White"/>
+                        <TextBlock Text="所有设置都是可选的-让它们单独使用默认值" FontWeight="Bold" Foreground="{StaticResource WarningBrush}" HorizontalAlignment="Center" Margin="0,0,0,10"/>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                <TextBlock Text="Logging:" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="{StaticResource ForegroundBrush}">
+                                <TextBlock Text="日志等级:" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="{StaticResource ForegroundBrush}">
                                     <TextBlock.ToolTip>
                                         <ToolTip Content="$($tooltips.LoggingLevel)" />
                                     </TextBlock.ToolTip>
                                 </TextBlock>
                                 <ComboBox x:Name="cmbLoggingLevel" Width="Auto" MinWidth="65" SelectedIndex="0">
-                                    <ComboBoxItem Content="Standard"/>
-                                    <ComboBoxItem Content="Verbose"/>
-                                    <ComboBoxItem Content="Debug"/>
+                                    <ComboBoxItem Content="标准"/>
+                                    <ComboBoxItem Content="详细"/>
+                                    <ComboBoxItem Content="调试"/>
                                     <ComboBox.ToolTip>
                                         <ToolTip Content="$($tooltips.LoggingLevel)" />
                                     </ComboBox.ToolTip>
@@ -507,7 +508,7 @@ function Show-SuperGodModeDialog {
                 </Grid>
             </ScrollViewer>
 
-            <TextBlock x:Name="txtVersion" Text="Version: $VERSION" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,5" FontSize="12" Foreground="{StaticResource VersionBrush}"/>
+            <TextBlock x:Name="txtVersion" Text="版本: $VERSION" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,5" FontSize="12" Foreground="{StaticResource VersionBrush}"/>
         </Grid>
     </Window>
 "@
@@ -565,7 +566,7 @@ function Show-SuperGodModeDialog {
         $folderBrowser.CheckFileExists = $false
         $folderBrowser.CheckPathExists = $true
         $folderBrowser.FileName = "Folder Selection"
-        $folderBrowser.Title = "Select Output Directory"
+        $folderBrowser.Title = "选择输出目录"
         $folderBrowser.InitialDirectory = $txtOutputPath.Text
         if ($folderBrowser.ShowDialog() -eq [System.Windows.Forms.DialogResult]::OK) {
             $selectedPath = Split-Path $folderBrowser.FileName
@@ -593,15 +594,17 @@ function Show-SuperGodModeDialog {
     # After loading the XAML and before showing the window
     $btnAbout = $window.FindName("btnAbout")
     $btnAbout.Add_Click({
-        [System.Windows.MessageBox]::Show("    `"Super God Mode`" Script For Windows
+        [System.Windows.MessageBox]::Show("    适用于 Windows 的 `"Super God Mode`" 脚本
 
-    Version: $VERSION
-    Author: ThioJoe
-
-    Source Code:
+    版本: $VERSION
+    作者: ThioJoe
+    汉化: 短臂猿-Short_Arm_Ape
+    源码:
     https://github.com/ThioJoe/Windows-Super-God-Mode
+    汉化分支: 
+    https://github.com/Short-Arm-Ape/Windows-Super-God-Mode-Chinese-ver
     ",
-            "About Super God Mode Script",
+            "关于 Super God Mode 脚本",
             [System.Windows.MessageBoxButton]::OK,
             [System.Windows.MessageBoxImage]::None
         )
@@ -662,10 +665,10 @@ if ($uniqueOutputFolder) { $defaultOutputFolderName += "-$timestamp" }
 
 # Start the GUI dialog unless -NoGUI is used
 if (-not $NoGUI) {
-    Write-Host "`nUse the GUI window that just appeared to select any options and run the script.`n(Do not close this window)"
+    Write-Host "`n使用刚刚出现的GUI窗口选择任何选项并运行脚本。`n(请勿关闭此窗口)"
     $params = Show-SuperGodModeDialog -defaultOutputFolderName $defaultOutputFolderName -initialDebug:$Debug -initialVerbose:$Verbose
     if ($null -eq $params) {
-        Write-host "Script GUI window appears to have been closed. Exiting script.`n" -ForegroundColor Yellow
+        Write-host "脚本GUI窗口似乎已被关闭。正在退出脚本。`n" -ForegroundColor Yellow
         exit
     }
     # Use $params here to set your script variables
@@ -874,17 +877,17 @@ try {
     New-Item -Path $mainShortcutsFolder -ItemType Directory -Force -ErrorAction Stop | Out-Null
 # If creating the folder failed and it doesn't already exist, throw an error and exit the script. Give suggestions for some specific cases
 } catch [System.UnauthorizedAccessException] {
-    Write-Error "Failed to create output folder: $_"
+    Write-Error "无法创建输出文件夹: $_"
     # If the default path is used
     if (-not $Output) {
-        Write-Host "This may be due to a permissions issue. Ensure you have permissions to create a folder in the script's directory." -ForegroundColor Yellow
+        Write-Host "这可能是由于权限问题。确保您具有在脚本目录中创建文件夹的权限。" -ForegroundColor Yellow
     } else {
-        Write-Host "This may be due to a permissions issue. Ensure you have permissions to create a folder at the specified path." -ForegroundColor Yellow
+        Write-Host "这可能是由于权限问题。确保您具有在指定路径下创建文件夹的权限。" -ForegroundColor Yellow
     }
     return
 } catch {
     if (-not (Test-Path $mainShortcutsFolder)) {
-        Write-Host "Failed to create output folder: $_" -ForegroundColor Yellow
+        Write-Host "无法创建输出文件夹: $_" -ForegroundColor Yellow
         return
     }
 }
@@ -921,14 +924,14 @@ if (-not $KeepPreviousOutputFolders) {
             }
         }
     } catch {
-        Write-Error "Failed to delete contents of previous output folder: $_"
+        Write-Error "无法删除先前输出文件夹的内容: $_"
     }
 }
 
 # Validate the custom dll path if provided
 if ($CustomDLLPath) {
     if (-not (Test-Path-Safe $CustomDLLPath)) {
-        Write-Error "The specified DLL path does not exist: $CustomDLLPath"
+        Write-Error "指定的 DLL 路径不存在: $CustomDLLPath"
         return
     }
 }
@@ -936,15 +939,15 @@ if ($CustomDLLPath) {
 # Validate the custom language folder path if provided. Ensure it is a folder
 if ($CustomLanguageFolderPath) {
     if (-not (Test-Path $CustomLanguageFolderPath -PathType Container)) {
-        Write-Error "The specified custom language folder path is not a valid folder: $CustomLanguageFolderPath"
+        Write-Error "指定的自定义语言文件夹路径无效: $CustomLanguageFolderPath"
         # Check if they insetad provided a file path, and if so, suggest they provide the folder containing the file
         if (Test-Path $CustomLanguageFolderPath -PathType Leaf) {
-            Write-Host "If you are trying to specify a file, please provide the folder containing the file instead, and name it to correspond with whatever DLL file it is for." -ForegroundColor Yellow
+            Write-Host "如果您尝试指定一个文件，请提供包含该文件的文件夹，并将其命名为与其对应的 DLL 文件相对应。" -ForegroundColor Yellow
         }
         return
     }
     else {
-        Write-Host "Using custom language folder path: $CustomLanguageFolderPath"
+        Write-Host "使用自定义语言文件夹路径: $CustomLanguageFolderPath"
     }
 }
 
@@ -1101,9 +1104,9 @@ if (-not $NoReadMe) {
 
 
 ---------------------------------------------------------------------------
-Created With:   `"Super God Mode`" Script - Version: $VERSION
-Author:         ThioJoe
-Project Link:   https://github.com/ThioJoe/Windows-Super-God-Mode
+Created With:   `"Super God Mode`" Script - 版本: $VERSION
+作者:         ThioJoe
+项目链接:   https://github.com/ThioJoe/Windows-Super-God-Mode
 
 "@
     Set-Content -Path $tipsFilePath -Value $tipsContent -Force
@@ -1215,9 +1218,9 @@ function Get-LocalizedString {
     if ($AppxManifestPath) {
         $manifestParentFolder = Split-Path $AppxManifestPath | Split-Path -Leaf
         Write-Debug "--------------------------------------------------------------------------------------"
-        Write-Debug "Retrieving Resource: $StringReference  | Package: $manifestParentFolder"
+        Write-Debug "正在检索资源: $StringReference  | 包名: $manifestParentFolder"
     } else {
-        Write-Debug "Retrieving Resource: $StringReference"
+        Write-Debug "正在检索资源: $StringReference"
     }
 
     # Check if it's the special case with multiple concatenated references
@@ -1249,17 +1252,17 @@ function Get-LocalizedString {
         $muiNameToCheck = "$dllPath.mui"
         if ($CustomLanguageFolder){
             if (Test-Path-Safe (Join-Path $CustomLanguageFolder $muiNameToCheck)) {
-                Write-Verbose "Found MUI file to use for for $dllPath in custom language folder."
+                Write-Verbose "找到自定义语言文件夹中 $dllPath 的 MUI 文件。"
                 $dllPath = Join-Path $CustomLanguageFolder $muiNameToCheck
             }
             else {
-                Write-Verbose "No MUI file found for $dllPath in custom language folder. Using default system language."
+                Write-Verbose "在自定义语言文件夹中找不到 $dllPath 的 MUI 文件。使用默认系统语言。"
             }
         }
 
         $hModule = [Win32]::LoadLibrary($dllPath)
         if ($hModule -eq [IntPtr]::Zero) {
-            Write-Warning "Failed to load library during typical string reference lookup: $dllPath"
+            Write-Warning "在典型的字符串引用查找期间加载库失败: $dllPath"
             return Sanitize-Unresolved-Reference -ReferenceString $StringReference -returnSanitizedOnFail:$returnSanitizedOnFail
         }
 
@@ -1271,11 +1274,11 @@ function Get-LocalizedString {
         if ($result -ne 0) {
             return $stringBuilder.ToString()
         } else {
-            Write-Warning "Failed to load string resource, no result returned for: $resourceId from $dllPath"
+            Write-Warning "无法加载字符串资源，未返回结果: $resourceId 来自 $dllPath"
             return Sanitize-Unresolved-Reference -ReferenceString $StringReference -returnSanitizedOnFail:$returnSanitizedOnFail
         }
     } else {
-        Write-Warning "Invalid or unknown localized string reference format: $StringReference"
+        Write-Warning "无效或未知的区域化字符串引用格式: $StringReference"
         return Sanitize-Unresolved-Reference -ReferenceString $StringReference -returnSanitizedOnFail:$returnSanitizedOnFail
     }
 }
@@ -3901,7 +3904,7 @@ $URLProtocolsData = @()
 
 # Loop for CLSID Links
 if (-not $SkipCLSID) {
-    Write-Host "`n----- Processing Shell Folders -----"
+    Write-Host "`n----- 正在处理 Shell 文件夹 -----"
     # Retrieve all CLSIDs with a "ShellFolder" subkey from the registry.
     # These CLSIDs represent shell folders that are embedded within Windows.
     try {
@@ -3909,7 +3912,7 @@ if (-not $SkipCLSID) {
         Where-Object { $_.GetSubKeyNames() -contains "ShellFolder" } |
         Select-Object PSChildName
     } catch {
-        Write-Error "Error retrieving CLSIDs from the registry`: $_"
+        Write-Error "从注册表检索 CLSID 时出错`: $_"
         $shellFolders = $null
     }
 
@@ -3918,7 +3921,7 @@ if (-not $SkipCLSID) {
     # Loop through each relevant CLSID that was found and process it to create shortcuts.
     foreach ($folder in $shellFolders) {
         $clsid = $folder.PSChildName  # Extract the CLSID.
-        Write-Verbose "Processing CLSID: $clsid"
+        Write-Verbose "正在处理CLSID: $clsid"
 
         # Retrieve the name of the shell folder using the Get-FolderName function and the source of the name within the registry
         $resultArray = Get-FolderName -clsid $clsid -CustomLanguageFolder $CustomLanguageFolderPath
@@ -3939,14 +3942,14 @@ if (-not $SkipCLSID) {
 
         $shortcutPath = Join-Path $CLSIDshortcutsOutputFolder "$sanitizedName.lnk"
 
-        Write-Verbose "Attempting to create shortcut: $shortcutPath"
+        Write-Verbose "正在尝试创建快捷方式: $shortcutPath"
         $success = Create-CLSID-Shortcut -clsid $clsid -name $name -shortcutPath $shortcutPath
 
         if ($success) {
-            Write-Host "Created CLSID Shortcut For: $name"
+            Write-Host "创建 CLSID 快捷方式成功: $name"
         }
         else {
-            Write-Host "Failed to create shortcut for $name"
+            Write-Host "创建快捷方式失败: $name"
         }
 
         # Check for sub-items (pages) related to the current CLSID (e.g., control panel items).
@@ -3966,13 +3969,13 @@ if (-not $SkipCLSID) {
 
 # Loop for special named folders
 if (-not $SkipNamedFolders) {
-    Write-Host "`n----- Processing Special Named Folders -----"
+    Write-Host "`n----- 正在处理特殊命名文件夹 -----"
 
     try {
         # Retrieve all named special folders from the registry.
         $namedFolders = Get-ChildItem -Path "Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions"
     } catch {
-        Write-Error "Error retrieving named folders from the registry`: $_"
+        Write-Error "从注册表检索命名文件夹时出错`: $_"
         $namedFolders = $null
     }
 
@@ -3983,24 +3986,24 @@ if (-not $SkipNamedFolders) {
         $iconPath = $folderProperties.Icon  # Extract the custom icon path (if any).
 
         if ($folderName) {
-            Write-Verbose "Processing named folder: $folderName"
+            Write-Verbose "正在处理命名文件夹: $folderName"
 
             # Sanitize the folder name to make it a valid filename.
             $sanitizedName = $folderName -replace '[\\/:*?"<>|]', '_'
             $shortcutPath = Join-Path $namedShortcutsOutputFolder "$sanitizedName.lnk"
 
-            Write-Verbose "Attempting to create shortcut: $shortcutPath"
+            Write-Verbose "正在尝试创建快捷方式: $shortcutPath"
             $success = Create-NamedShortcut -name $folderName -shortcutPath $shortcutPath -iconPath $iconPath
 
             if ($success) {
-                Write-Host "Created Shortcut For Named Folder: $folderName"
+                Write-Host "创建命名文件夹快捷方式成功: $folderName"
             }
             else {
-                Write-Host "Failed to create shortcut for named folder $folderName"
+                Write-Host "创建命名文件夹快捷方式失败: $folderName"
             }
         }
         else {
-            Write-Verbose "Skipping folder with no name: $($folder.PSChildName)"
+            Write-Verbose "跳过没有名称的文件夹: $($folder.PSChildName)"
         }
     }
 }
@@ -4008,7 +4011,7 @@ if (-not $SkipNamedFolders) {
 # Loop for Task Links
 if (-not $SkipTaskLinks) {
     # Process Task Links - Use the extracted XML data from Shell32 to create shortcuts for task links
-    Write-Host "`n -----Processing Task Links -----"
+    Write-Host "`n ----- 正在处理任务链接 -----"
     # Retrieve task links from the XML content in shell32.dll.
     $taskLinks = Get-TaskLinks -SaveXML:(!$NoStatistics) -DLLPath:$CustomDLLPath -CustomLanguageFolder:$CustomLanguageFolderPath
     $createdShortcutNames = @{} # Track created shortcuts to be able to tasks with the same name but different commands by appending a number
@@ -4058,7 +4061,7 @@ if (-not $SkipTaskLinks) {
         } elseif ($task.ApplicationName -and $task.Page) {
             $command = "control.exe /name $($task.ApplicationName) /page $($task.Page)"
         } else {
-            Write-Verbose "Skipping task $originalName due to insufficient command information"
+            Write-Verbose "跳过任务 $originalName，原因: 命令信息不足"
             continue
         }
 
@@ -4082,21 +4085,21 @@ if (-not $SkipTaskLinks) {
         $success = Create-TaskLink-Shortcut -name $uniqueName -shortcutPath $shortcutPath -shortcutType $shortcutType -command $command -controlPanelName $task.ControlPanelName -applicationId $task.ApplicationId -keywords $task.Keywords
 
         if ($success) {
-            Write-Host "Created task link shortcut for $uniqueName"
+            Write-Host "创建任务链接快捷方式成功: $uniqueName"
         } else {
-            Write-Host "Failed to create task link shortcut for $uniqueName"
+            Write-Host "创建任务链接快捷方式失败: $uniqueName"
         }
     }
 }
 
 # Loop for Deep Links
 if (-not $SkipDeepLinks -and $allSettingsXmlPath) {
-    Write-Host "`n----- Processing Deep Links -----"
+    Write-Host "`n----- 正在处理深度链接 -----"
 
     $deepLinkData = Get-AllSettings-Data -xmlFilePath $allSettingsXmlPath -SaveXML:(!$NoStatistics)
 
     if ($null -eq $deepLinkData) {
-        Write-Host "No deep links data found - refer to any errors above."
+        Write-Host "未找到深度链接数据，跳过深度链接创建。"
     }
 
     # If deep links data was found, process it to create shortcuts. If $deepLinkData is null or empty, this will be skipped.
@@ -4132,7 +4135,7 @@ if (-not $SkipDeepLinks -and $allSettingsXmlPath) {
                 }
 
                 if ($existingTaskLink) {
-                    Write-Verbose "Skipping Deep Link: $($deepLink.Description) as a task link with the same command already exists"
+                    Write-Verbose "跳过深度链接: $($deepLink.Description)，原因: 已存在相同命令的任务链接"
                     continue
                 }
             }
@@ -4140,11 +4143,11 @@ if (-not $SkipDeepLinks -and $allSettingsXmlPath) {
             $result = Create-Deep-Link-Shortcut -settingArray $deepLink
 
             if ($result) {
-                Write-Host "Created Deep Link Shortcut: $($deepLink.Description)"
+                Write-Host "创建深度链接快捷方式成功: $($deepLink.Description)"
                 # Add the updated deepLink object to the processed data array. Will also now contain FullCommand and ShortcutPath
                 $deepLinksProcessedData += $result
             } else {
-                Write-Host "Failed to create Deep Link shortcut: $($deepLink.Description)"
+                Write-Host "创建深度链接快捷方式失败: $($deepLink.Description)"
                 $deepLink.FullCommand = "[Failed to create shortcut]"
                 $deepLink.ShortcutPath = "[Failed to create shortcut]"
                 $deepLinksProcessedData += $deepLink
@@ -4153,14 +4156,14 @@ if (-not $SkipDeepLinks -and $allSettingsXmlPath) {
     }
 
 } elseif ($SkipDeepLinks) {
-    Write-Host "`n Skipped Deep Links creation...`n"
+    Write-Host "`n 跳过深度链接创建...`n"
 } elseif ($null -eq $allSettingsXmlPath) {
-    Write-Warning "Skipping Deep Links creation because AllSystemSettings XML file was not found."
+    Write-Warning "跳过深度链接创建，因为未找到 AllSystemSettings XML 文件。"
 }
 
 # Loop for MS-settings: Links
 if (-not $SkipMSSettings) {
-    Write-Host "`n----- Processing MS-Settings Links -----"
+    Write-Host "`n----- 正在处理 MS-Settings 链接 -----"
     $msSettingsList = Get-MS-SettingsFrom-SystemSettingsDLL -DllPath $SystemSettingsDllPath
 
     foreach ($setting in $msSettingsList) {
@@ -4177,16 +4180,16 @@ if (-not $SkipMSSettings) {
         $success = Create-MSSettings-Shortcut -fullName $fullShortcutName -shortcutPath $shortcutPath
 
         if ($success) {
-            Write-Host "Created MS Settings Shortcut: $fullShortcutName"
+            Write-Host "创建 MS Settings 快捷方式成功: $fullShortcutName"
         } else {
-            Write-Host "Failed to create shortcut: $fullShortcutName"
+            Write-Host "创建 MS Settings 快捷方式失败: $fullShortcutName"
         }
     }
 }
 
 # Loop for URL Protocols
 if (-not $SkipURLProtocols){
-    Write-Host "`n----- Processing URL Protocols -----"
+    Write-Host "`n----- 正在处理 URL 协议 -----"
     if ($AllURLProtocols){
         $OnlyMicrosoftApps = $false
     } else {
@@ -4200,14 +4203,14 @@ if (-not $SkipURLProtocols){
     foreach ($protocol in $URLProtocolsData) {
         $success = Create-Protocol-Shortcut -protocol $protocol.Protocol -name $protocol.Name -command $protocol.Command -shortcutPath (Join-Path $URLProtocolLinksOutputFolder "$($protocol.Protocol).url")
         if ($success) {
-            Write-Host "Created URL Protocol Shortcut: $($protocol.Protocol)"
+            Write-Host "创建 URL 协议快捷方式成功: $($protocol.Protocol)"
         } else {
-            Write-Host "Failed to create URL Protocol shortcut: $($protocol.Protocol)"
+            Write-Host "创建 URL 协议快捷方式失败: $($protocol.Protocol)"
         }
     }
 
     if (-not $SkipHiddenAppLinks) {
-        Write-Host "`n----- Searching For Hidden URL Links -----"
+        Write-Host "`n----- 正在搜索隐藏的 URL 链接 -----"
         # Search for URLs in AppX package files by brute force
         $appXURLSearchResults = Search-HiddenLinks -associatedProtocolsPerApp $associatedProtocolsPerApp -URLProtocolsData $URLProtocolsData -SkipAppXURLSearch:$SkipHiddenAppLinks -DeepScanHiddenLinks:$DeepScanHiddenLinks
 
@@ -4255,7 +4258,7 @@ if (-not $NoStatistics) {
 # Output results
 if ($displayCsvFiles -or $displayXmlFiles) {
     Write-Host "`n--------------------------------------------------------------------------------"
-    Write-Host "Statistics Files and XML Data saved in folder: `"$statisticsFolderName`""
+    Write-Host "统计文件和XML数据保存在文件夹: `"$statisticsFolderName`""
 
     if ($displayCsvFiles) {
         Write-Host "`n   - CSV Files:"
@@ -4280,40 +4283,40 @@ $totalCount = $clsidInfo.Count + $namedFolders.Count + $taskLinks.Count + $msSet
 
 # Output a message indicating that the script execution is complete and the CSV files have been created.
 Write-Host "`n------------------------------------------------"
-Write-Host   "      Windows Super God Mode Script Result      " -ForeGroundColor Yellow
+Write-Host   "      Windows Super God Mode 脚本执行结果     " -ForeGroundColor Yellow
 Write-Host   "------------------------------------------------`n"
 
 # Output the total counts of each, and color the numbers to stand out. Done by writing the text and then the number separately with -NoNewLine. If it was skipped, also add that but not colored.
-Write-Host "         Total Shortcuts Created: " -NoNewline
+Write-Host "         创建的快捷方式总数: " -NoNewline
 Write-Host $totalCount -ForegroundColor Green
 
-Write-Host "           > CLSID Links:      " -NoNewline
+Write-Host "           > CLSID 链接:      " -NoNewline
 Write-Host $clsidInfo.Count -ForegroundColor Cyan -NoNewline
-Write-Host $(if ($SkipCLSID) { "   (Skipped)" }) # If skipped, add the skipped text, otherwise still write empty string because we used -NoNewline previously
+Write-Host $(if ($SkipCLSID) { "   (跳过)" }) # If skipped, add the skipped text, otherwise still write empty string because we used -NoNewline previously
 
-Write-Host "           > Special Folders:  " -NoNewline
+Write-Host "           > 特殊文件夹:  " -NoNewline
 Write-Host $namedFolders.Count -ForegroundColor Cyan -NoNewline
-Write-Host $(if ($SkipNamedFolders) { "   (Skipped)" })
+Write-Host $(if ($SkipNamedFolders) { "   (跳过)" })
 
-Write-Host "           > Task Links:       " -NoNewline
+Write-Host "           > 任务链接:       " -NoNewline
 Write-Host $taskLinks.Count -ForegroundColor Cyan -NoNewline
-Write-Host $(if ($SkipTaskLinks) { "   (Skipped)" })
+Write-Host $(if ($SkipTaskLinks) { "   (跳过)" })
 
-Write-Host "           > Settings Links:   " -NoNewline
+Write-Host "           > 设置链接:   " -NoNewline
 Write-Host $msSettingsList.Count -ForegroundColor Cyan -NoNewline
-Write-Host $(if ($SkipMSSettings) { "   (Skipped)" })
+Write-Host $(if ($SkipMSSettings) { "   (跳过)" })
 
-Write-Host "           > Deep Links:       " -NoNewline
+Write-Host "           > 深度链接:       " -NoNewline
 Write-Host $deepLinksProcessedData.Count -ForegroundColor Cyan -NoNewline
-Write-Host $(if ($SkipDeepLinks) { "   (Skipped)" })
+Write-Host $(if ($SkipDeepLinks) { "   (跳过)" })
 
-Write-Host "           > URL Protocols:    " -NoNewline
+Write-Host "           > URL 协议:    " -NoNewline
 Write-Host $URLProtocolsData.Count -ForegroundColor Cyan -NoNewline
-Write-Host $(if ($SkipURLProtocols) { "   (Skipped)" })
+Write-Host $(if ($SkipURLProtocols) { "   (跳过)" })
 
-Write-Host "           > Hidden App Links: " -NoNewline
+Write-Host "           > 隐藏应用链接: " -NoNewline
 Write-Host $appXURLSearchResultsCreated.Count -ForegroundColor Cyan -NoNewline
-Write-Host $(if ($SkipHiddenAppLinks -or $SkipURLProtocols) { "   (Skipped)" })
+Write-Host $(if ($SkipHiddenAppLinks -or $SkipURLProtocols) { "   (跳过)" })
 
 Write-Host "`n------------------------------------------------`n"
 
@@ -4323,9 +4326,9 @@ if ($Debug) {
 
 if (-not $NoGUI) {
     if (-not $psISE) {
-        Write-Host "Press any key to exit...`n" -NoNewline
+        Write-Host "按任意键退出...`n" -NoNewline
         $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
     } else {
-        Read-Host "Press Enter to exit..."
+        Read-Host "按回车键退出..."
     }
 }

@@ -1,12 +1,17 @@
-# "Super God Mode" For Windows
+# 适用于 Windows 的 "Super God Mode" 脚本
 
-This PowerShell script <b>creates shortcuts to all special shell folders, named folders, task links, system settings, deep links, and URL protocols in Windows</b>, providing easy access to a wide range of system settings and features.
+此 PowerShell 脚本 <b>创建 Windows 中所有特殊 shell 文件夹、命名文件夹、任务链接、系统设置、深度链接和 URL 协议的快捷方式</b>，从而可以轻松访问各种系统设置和功能。
 
-It was inspired by the famously nicknamed "God Mode" folder and creates many more shortcuts than even that. 
+它的灵感来自著名的绰号“上帝模式”文件夹，并创建了比这更多的快捷方式。 
 
-➤ Note: It's not really a "mode", that's just a catchy name. Running this doesn't change any system settings, it just creates a folder containing a ton of shortcuts.
+➤ 注意：这并不是真正的“模式”，这只是一个朗朗上口的名字。运行它不会更改任何系统设置，它只会创建一个包含大量快捷方式的文件夹。
 
-## Screenshots
+## 汉化声明
+该项目为原项目的汉化版本，原项目仓库：[ThioJoe/Windows-Super-God-Mode](https://github.com/ThioJoe/Windows-Super-God-Mode)
+非汉化质量问题或因汉化导致的问题请至原项目仓库提交 `Issues` 。
+汉化内容中有部分内容采用机器/人工智能翻译。
+
+## 屏幕截图
 
 <p align="center">
 <img width="700" alt="GUI Window" src="https://github.com/user-attachments/assets/d318373c-d4d4-4521-bf57-8b4a4b4273ee">
@@ -17,57 +22,57 @@ It was inspired by the famously nicknamed "God Mode" folder and creates many mor
 
 
 
-## Features
+## 特点
 
-- Creates shortcuts for various Windows components:
-  - **CLSID Shell Folders**
-  - **Named Special Folders**
-  - **Task Links** (sub-pages within shell folders and control panel menus)
-  - **System settings** (ms-settings: links)
-  - **"Deep Links"** (direct links to various settings menus across Windows)
-  - **URL Protocols**
-  - **Hidden App Links** (Internal-use and undocumented URL links used by apps)
-- Generates CSV files with detailed information about the shortcuts
-- Saves XML content retrieved from shell32.dll and other sources for reference
-- Graphical User Interface (GUI) for easy configuration
-- Release versions signed with EV code signing certificate
+- 为各种 Windows 组件创建快捷方式：
+  - **CLSID Shell 文件夹**
+  - **命名特殊文件夹**
+  - **任务链接** （shell 文件夹和控制面板菜单中的子页面）
+  - **系统设置** （ “ms-settings:” 链接）
+  - **"深度链接"** （直接链接到 Windows 上的各种设置菜单）
+  - **URL 协议**
+  - **隐藏的应用程序链接** （应用程序使用的内部使用和未记录的 URL 链接）
+- 生成包含有关快捷方式的详细信息的 CSV 文件
+- 保存从 shell32.dll 和其他来源检索到的 XML 内容以供参考
+- 图形用户界面 （GUI），易于配置
+- 使用 EV 代码签名证书签名的发布版本
 
-## How to Run:
+## 使用说明:
 
-### Option 1 (Easier): Using .Bat Launcher
-1. Download the latest version of the script. (Direct link [here](https://github.com/ThioJoe/Windows-Super-God-Mode/releases/latest/download/Super_God_Mode.ps1))
-2. Download the launcher batch file to the same location. (Direct link [here](https://github.com/ThioJoe/Windows-Super-God-Mode/releases/latest/download/SuperGodMode-EasyLauncher.bat))
-3. Run the batch file.
+### 方法 1 (更简单): 使用 .bat 启动器
+1. 点击页面上部的绿色按钮 `< > Code` ，在弹出的选项中选择 `Download ZIP`。 
+2. 解压下载的 `Windows-Super-God-Mode-Chinese-ver-main.zip` ，确保 `SuperGodMode-EasyLauncher.bat` 和 `Super_God_Mode.ps1` 两个脚本均解压完毕且处于同一目录下。 
+3. 运行 `SuperGodMode-EasyLauncher.bat` 。
 
-### Option 2: Manually running
+### 方法 2: 手动运行
 
-1. Download the latest version of the script. (Direct link [here](https://github.com/ThioJoe/Windows-Super-God-Mode/releases/latest/download/Super_God_Mode.ps1))
-2. Open PowerShell to the directory with the script. (Tip: In File Explorer, just type "PowerShell.exe" into the address bar to open it to that path).
-3. Run the following command to allow script execution temporarily for the current session. 
+1. 下载脚本 `Super_God_Mode.ps1` 。 ( [下载链接](https://raw.githubusercontent.com/Short-Arm-Ape/Windows-Super-God-Mode-Chinese-ver/refs/heads/main/Super_God_Mode.ps1))
+2. 打开 PowerShell 到包含脚本的目录。（小贴士：在文件资源管理器中，只需在地址栏中键入“PowerShell.exe”即可将其打开到该路径）。
+3. 运行以下命令以允许暂时执行当前会话的脚本： 
    ```
    Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
    ```
-   ^ **Note:** You might see a warning about changing the execution policy, but the `-Scope Process` part ensures that the change is only temporary, and will only apply to that specific PowerShell window, so you can choose to allow. You can read more in [this article](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-5.1#-scope). 
+   ➤ **注意:** 你可能会看到有关更改执行策略的警告，但命令中的 `-Scope Process` 参数确保更改只是临时的，并且仅应用于该特定PowerShell窗口，因此您可以选择允许。您可以在 [本文](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-5.1#-scope) 中阅读更多内容. 
    
-5. Run the script:
+5. 运行该脚本:
    ```
    .\Super_God_Mode.ps1
    ```
-   - If no parameters are provided, a GUI will appear for easy configuration.
-   - You can also run the script with optional parameters (see below).
+   - 如果未提供参数，则会出现一个 GUI，以便于配置。
+   - 您还可以使用可选参数运行脚本（见下文）。
 
-## Video: Demonstration
+## 演示视频：
 
-<p align="center">Demonstration Video: https://www.youtube.com/watch?v=CnATL9kJPn8</p>
+<p align="center">演示视频： https://www.youtube.com/watch?v=CnATL9kJPn8</p>
 
 <p align="center"><a href="https://www.youtube.com/watch?v=CnATL9kJPn8"> <img width="750" src="https://github.com/user-attachments/assets/1d5d5c88-aa50-4909-845a-8598e759a6b7"></a></p>
 
-<p align="center">(Takes you to YouTube, not embedded. See timestamps in video description.)</p>
+<p align="center">(点击该链接将跳转至 YouTube。请参阅视频说明中的时间戳。)</p>
 
 
-## CLI Parameters
+## CLI 参数
 
-Note: Except for `-Debug` and `-Verbose`, you must use `-NoGUI` for arguments to take effect.
+Note: 除了 `-Debug` 和 `-Verbose` 以外, 你必须使用 `-NoGUI` 以使参数生效
 
 #### Alternative Options Arguments
 
