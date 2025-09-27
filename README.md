@@ -10,7 +10,7 @@
 
 该项目为原项目的汉化版本，原项目仓库：[ThioJoe/Windows-Super-God-Mode](https://github.com/ThioJoe/Windows-Super-God-Mode)
 
-非汉化质量问题或因汉化导致的问题请至原项目仓库提交 `Issues` 。
+非汉化质量问题或非因汉化导致的运行问题请至原项目仓库提交 `Issues` 。
 
 汉化内容中有部分内容采用机器/人工智能翻译。
 
