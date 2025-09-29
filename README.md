@@ -73,7 +73,7 @@
 <p align="center">(点击该链接将跳转至 YouTube。请参阅视频说明中的时间戳。)</p>
 
 
-## CLI 参数
+## 命令行参数
 
 Note: 除了 `-Debug` 和 `-Verbose` 以外, 你必须使用 `-NoGUI` 以使参数生效
 
@@ -136,9 +136,9 @@ Note: 除了 `-Debug` 和 `-Verbose` 以外, 你必须使用 `-NoGUI` 以使参�
 - See Wiki Page for FAQs: https://github.com/ThioJoe/Windows-Super-God-Mode/wiki/Frequently-Asked-Questions
 ___
 
-# Extra Tools
+# 拓展工具
 
-The "Extra Tools" folder contains additional scripts that complement the main functionality of Windows Super God Mode:
+`Extra Tools`文件夹包含补充Windows Super God Mode 脚本主要功能的其他脚本：
 
 ### Get_DLL_String_Reference.ps1
 

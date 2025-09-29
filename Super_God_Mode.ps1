@@ -230,7 +230,7 @@ function Show-SuperGodModeDialog {
         CollectStatistics = "创建统计文件夹和文件，其中包含有关 shell 文件夹的 CSV 数据 &#x0a;和任务以及其他收集数据的 XML 文件"
         AllowDuplicateDeepLinks = "允许创建与现有任务链接相同的深度链接。 &#x0a;默认情况下，此类重复项不包括在深度链接文件夹中。"
         CollectCLSID = "根据 CLSID 创建 shell 文件夹的快捷方式"
-        CollectNamedFolders = "为命名的特殊文件夹创建快捷方式"
+        CollectNamedFolders = "为特殊名称文件夹创建快捷方式"
         CollectTaskLinks = "为任务链接（shell 文件夹和控制面板菜单中的子页面）创建快捷方式"
         CollectMSSettings = "为 ms-settings: 链接（系统设置页面）创建快捷方式"
         CollectDeepLinks = "为深度链接（直接链接到 Windows 各种设置菜单）创建快捷方式"
@@ -426,7 +426,7 @@ function Show-SuperGodModeDialog {
                                         <ToolTip Content="$($tooltips.CollectCLSID)" />
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox x:Name="chkCollectNamedFolders" Content="命名文件夹链接" IsChecked="True" Margin="0,5,5,5" Grid.Column="0" Grid.Row="1" Foreground="{StaticResource ForegroundBrush}">
+                                <CheckBox x:Name="chkCollectNamedFolders" Content="特殊名称文件夹链接" IsChecked="True" Margin="0,5,5,5" Grid.Column="0" Grid.Row="1" Foreground="{StaticResource ForegroundBrush}">
                                     <CheckBox.ToolTip>
                                         <ToolTip Content="$($tooltips.CollectNamedFolders)" />
                                     </CheckBox.ToolTip>
@@ -451,7 +451,7 @@ function Show-SuperGodModeDialog {
                                         <ToolTip Content="$($tooltips.CollectURLProtocols)" />
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox x:Name="chkCollectAppxLinks" Content="隐藏应用链接" IsChecked="True" Margin="5,5,0,5" Grid.Column="1" Grid.Row="3" Foreground="{StaticResource ForegroundBrush}" Style="{StaticResource CustomCheckBoxStyle}" ToolTipService.ShowOnDisabled="True">
+                                <CheckBox x:Name="chkCollectAppxLinks" Content="隐藏的应用链接" IsChecked="True" Margin="5,5,0,5" Grid.Column="1" Grid.Row="3" Foreground="{StaticResource ForegroundBrush}" Style="{StaticResource CustomCheckBoxStyle}" ToolTipService.ShowOnDisabled="True">
                                     <CheckBox.ToolTip>
                                         <ToolTip Content="$($tooltips.CollectAppxLinks)" />
                                     </CheckBox.ToolTip>
@@ -706,7 +706,7 @@ if ($Debug) {
     $Verbose = $true # Set Verbose to true if Debug is used
 } else { $DebugPreference = 'SilentlyContinue' }
 
-Write-Host "Beginning script execution..." -ForegroundColor Green
+Write-Host "正在执行脚本..." -ForegroundColor Green
 
 # ====================================================================================================================================
 # ==================================================  SCRIPT PREPARATION  ============================================================
@@ -730,7 +730,7 @@ if ($Output) {
 }
 
 # If Debug mode enabled, create debug logs folder and start transcript
-$debugLogsFolderName = "__Debug Logs"
+$debugLogsFolderName = "__调试日志"
 $debugLogFolderPath = Join-Path $mainShortcutsFolder $debugLogsFolderName
 if ($Debug) {
     if (-not (Test-Path $debugLogFolderPath)) { New-Item -Path $debugLogFolderPath -ItemType Directory -Force | Out-Null }
@@ -741,29 +741,29 @@ if ($Debug) {
 
 # Print the script parameters to the console
 if ($Debug) {
-    Write-Debug "************** Initial Script Parameters **************"
-    Write-Debug ("DontGroupTasks: $DontGroupTasks`nUseAlternativeCategoryNames: $UseAlternativeCategoryNames`n" +
-        "AllURLProtocols: $AllURLProtocols`nCollectExtraURLProtocolInfo: $CollectExtraURLProtocolInfo`n" +
-        "AllowDuplicateDeepLinks: $AllowDuplicateDeepLinks`nDeepScanHiddenLinks: $DeepScanHiddenLinks`n" +
-        "Output: $Output`nKeepPreviousOutputFolders: $KeepPreviousOutputFolders`nNoStatistics: $NoStatistics`n" +
-        "NoReadMe: $NoReadMe`nSkipCLSID: $SkipCLSID`nSkipNamedFolders: $SkipNamedFolders`n" +
-        "SkipTaskLinks: $SkipTaskLinks`nSkipMSSettings: $SkipMSSettings`nSkipDeepLinks: $SkipDeepLinks`n" +
-        "SkipURLProtocols: $SkipURLProtocols`nSkipHiddenAppLinks: $SkipHiddenAppLinks`nVerbose: $Verbose`n" +
-        "Debug: $Debug`ntiming: $timing`ndebugSkipAppxSearch: $debugSkipAppxSearch`n" +
-        "debugSearchOnlyProtocolList: $debugSearchOnlyProtocolList`nuniqueOutputFolder: $uniqueOutputFolder`n" +
-        "NoGUI: $NoGUI`nCustomDLLPath: $CustomDLLPath`nCustomLanguageFolderPath: $CustomLanguageFolderPath`n" +
-        "CustomSystemSettingsDLLPath: $CustomSystemSettingsDLLPath`nCustomAllSystemSettingsXMLPath: $CustomAllSystemSettingsXMLPath")
+    Write-Debug "************** 初始脚本参数 **************"
+    Write-Debug ("不分组任务: $DontGroupTasks`n使用替代类别名称: $UseAlternativeCategoryNames`n" +
+        "所有URL协议: $AllURLProtocols`n收集额外URL协议信息: $CollectExtraURLProtocolInfo`n" +
+        "允许重复深度链接: $AllowDuplicateDeepLinks`n深度扫描隐藏链接: $DeepScanHiddenLinks`n" +
+        "输出: $Output`n保留先前输出文件夹: $KeepPreviousOutputFolders`n无统计信息: $NoStatistics`n" +
+        "无自述文件: $NoReadMe`n跳过CLSID: $SkipCLSID`n跳过命名文件夹: $SkipNamedFolders`n" +
+        "跳过任务链接: $SkipTaskLinks`n跳过MS设置: $SkipMSSettings`n跳过深度链接: $SkipDeepLinks`n" +
+        "跳过URL协议: $SkipURLProtocols`n跳过隐藏应用链接: $SkipHiddenAppLinks`n详细: $Verbose`n" +
+        "调试: $Debug`ntiming: $timing`n调试跳过Appx搜索: $debugSkipAppxSearch`n" +
+        "调试仅搜索协议列表: $debugSearchOnlyProtocolList`n唯一输出文件夹: $uniqueOutputFolder`n" +
+        "无GUI: $NoGUI`n自定义动态链接库路径: $CustomDLLPath`n自定义语言文件夹路径: $CustomLanguageFolderPath`n" +
+        "自定义系统设置动态链接库路径: $CustomSystemSettingsDLLPath`n自定义所有系统设置XML路径: $CustomAllSystemSettingsXMLPath")
 }
 
 # Define folder names
-$clsidFolderName = "CLSID Shell Folder Shortcuts"
-$namedFolderName = "Special Named Folders"
-$taskLinksFolderName = "All Task Links"
-$msSettingsFolderName = "System Settings"
-$deepLinksFolderName = "Deep Links"
-$urlProtocolsFolderName = "URL Protocols"
-$URLProtocolPageLinksFolderName = "Hidden App Links"
-$statisticsFolderName = "__Script Result Statistics"
+$clsidFolderName = "CLSID Shell 文件夹"
+$namedFolderName = "特殊名称文件夹"
+$taskLinksFolderName = "所有任务链接"
+$msSettingsFolderName = "系统设置"
+$deepLinksFolderName = "深度链接"
+$urlProtocolsFolderName = "URL 协议"
+$URLProtocolPageLinksFolderName = "隐藏的应用链接"
+$statisticsFolderName = "__脚本运行结果统计信息"
 
 # Construct paths for subfolders
 $CLSIDshortcutsOutputFolder = Join-Path $mainShortcutsFolder $clsidFolderName
@@ -1071,42 +1071,44 @@ if (-not $NoStatistics) {
 # Create any other static files
 if (-not $NoReadMe) {
     # Create tips file in statistics folder
-    $tipsFilePath = Join-Path $mainShortcutsFolder "!Read Me - Tips And Info.txt"
+    $tipsFilePath = Join-Path $mainShortcutsFolder "!必读 - 提示和信息.txt"
     $tipsContent = @"
-------------------------- Tips -------------------------
+------------------------- 提示 -------------------------
 
-• To easily see where shortcuts go, in Windows Explorer enable the `"Link Target`" column. (Right click column headers > More > Link Target)
-        Note: The column will not show what it considers "arguments" (anything after a space in the target path), so this column is mostly useful for the `"$urlProtocolsFolderName`", `"$URLProtocolPageLinksFolderName`", and `"$msSettingsFolderName`" folders.
+• 要轻松查看快捷方式的位置，请在Windows资源管理器中启用“链接目标”列。（右键单击列标题>更多>链接目标）
+        注意：该列不会显示它认为的“参数”（目标路径中空格之后的任何内容），因此该列主要用于 `"$urlProtocolsFolderName`", `"$URLProtocolPageLinksFolderName`", 和 `"$msSettingsFolderName`" 文件夹。
 
-• Some links might not work or show an error, this is normal because many links are undocumented or might be leftovers not still in use from older Windows versions.
-        For example, the `"$taskLinksFolderName`" folder contains links that might normally be hidden except under certain conditions where they apply like the computer is a tablet, has a pen, or uses a certain language.
+• 有些链接可能无法正常工作或显示错误，这是正常现象，因为许多链接没有文档记录，或者可能是旧版本Windows中不再使用的遗留链接。
+        例如，`"$taskLinksFolderName`" 文件夹包含的链接通常在某些条件下才会显示，例如计算机是平板电脑、具有手写笔或使用特定语言。
 
-• The script will generate different amounts of shortcuts depending on the version of Windows, what features are enabled, and what software is installed.
-        - The script doesn't use a hardcoded list of shortcuts, it actually reads the system to find what is available.
-        - All the shortcuts use the actual icons and names associated with them in the system. Only the names and icons of the main folders are chosen by me.
+• 脚本将根据Windows版本、启用的功能和安装的软件生成不同数量的快捷方式。
+        - 脚本不会使用硬编码的快捷方式列表，而是实际读取系统以查找可用的内容。
+        - 所有快捷方式都使用与系统中关联的实际图标和名称。只有主文件夹的名称和图标是我选择的。
 
 
-------------------- Additional Notes -------------------
+------------------- 其他需要注意的 -------------------
 
-• Notes about the `"$URLProtocolPageLinksFolderName`" folder:
-        - You'll notice the list of URLs in the CSV statistics file is longer than the number of shortcuts actually created.
-             > This is because Some of the found URLs contain "variable" placeholders (such as {1} or end in an equals sign) which require information to be filled in at runtime, so they can't be made into shortcuts.
-             > These can be identified via the `"Embedded Variables`" column in the CSV file. They are still collected for informational purposes.
-        - These URLs are pulled directly from the text of application files and binaries and are mostly undocumented or meant for internal use. That's why I call them `"hidden`".
-             > Therefore these links might not work, or might contain oddly specific references, such as `"xbox://search/?productType=games&query=angry%20birds`"
-             > That's because the URL was contained somewhere in some app file, possibly as an example, for testing, or even part of a help message. I chose to just include them all.
+• 关于 `"$URLProtocolPageLinksFolderName`" 文件夹需要注意的:
+        - 您会注意到CSV统计文件中的URL列表比实际创建的快捷方式数长。
+             > 这是因为找到的一些URL包含“可变”占位符（如{1}或以等号结尾），这些占位符需要在运行时填充信息，因此它们不能成为快捷方式。
+             > 这些可以通过CSV文件中的“嵌入式变量”列来识别。它们仍然被收集以供参考。
+        - 这些URL直接来自应用程序文件和二进制文件的文本，主要是未记录或用于内部使用的。这就是我称它们为“隐藏”的原因。
+             > 因此，这些链接可能无法正常工作，或者可能包含奇怪的特定引用，例如“`xbox://search/?productType=games&query=angry%20birds`”
+             > 这是因为该URL包含在某个应用程序文件中，可能作为示例、测试的一部分，甚至是帮助消息的一部分。我选择将它们全部包含在内。
 
-• The `"easy launcher`" batch file isn't necessary to run the script, it just makes it easier to run the script with a double-click.
-        - Since by default Windows will not run PowerShell scripts without a special command/setting (called the `"Execution Policy`"), the batch file uses a command to to allow the script to run for that temporary session.
-        - Alternatively, you could run this command yourself in a powershell window before running the script:   		    Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
-            > Which also would just allow scripts for that current PowerShell session, then you can run the script with: 	.\Super_God_Mode.ps1
-            > NOTE: When doing this yourself using Set-ExecutionPolicy, DO NOT forget the `-Scope Process` part, or it could lessen your system security by allowing all scripts to run permanently.
+• `"easy launcher`" 批处理文件不是运行脚本所必需的，它只是让双击运行脚本变得更容易。
+        - 由于默认情况下Windows不会在没有特殊命令/设置（称为`"Execution Policy`"）的情况下运行PowerShell脚本，因此批处理文件使用命令允许脚本在该临时会话中运行。
+        - 或者，您可以在运行脚本之前在PowerShell窗口中自己运行此命令：Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
+            > 这也只会允许当前PowerShell会话中的脚本，然后您可以使用以下命令运行脚本：.\Super_God_Mode.ps1
+            > 注意：在使用Set-ExecutionPolicy时，切勿忘记`-Scope Process`部分，否则可能会降低系统安全性，允许所有脚本永久运行。
 
 
 ---------------------------------------------------------------------------
-Created With:   `"Super God Mode`" Script - 版本: $VERSION
+由 `"Super God Mode`" 脚本 - 版本: $VERSION 创建
 作者:         ThioJoe
+汉化作者： 短臂猿-Short_Arm_Ape
 项目链接:   https://github.com/ThioJoe/Windows-Super-God-Mode
+汉化分支： https://github.com/Short-Arm-Ape/Windows-Super-God-Mode-Chinese-ver
 
 "@
     Set-Content -Path $tipsFilePath -Value $tipsContent -Force
@@ -2211,7 +2213,7 @@ function Create-NamedShortcut {
         return $true
     }
     catch {
-        Write-Host "Error creating shortcut for $name`: $($_.Exception.Message)"
+        Write-Host "创建 $name` 快捷方式失败: $($_.Exception.Message)"
         return $false
     }
 }
@@ -2374,17 +2376,17 @@ function Get-AllSettings-Data {
     )
 
     if (-not (Test-Path-Safe $xmlFilePath)) {
-        Write-Error "All Systems XML file not found: $xmlFilePath"
+        Write-Error "未找到所有系统 XML 文件: $xmlFilePath"
         return $null
     }
 
     try {
-        Write-Verbose "Parsing AllSystemSettings XML: $xmlFilePath"
+        Write-Verbose "正在解析 所有系统设置 XML : $xmlFilePath"
         [xml]$xmlContent = Get-Content $xmlFilePath
         $searchableContentData = $xmlContent.PCSettings.SearchableContent
         $settingsData = @()
     } catch {
-        Write-Error"Error trying to retrieve and parsing AllSystemSettings XML. Collecting Deep Links must be skipped."
+        Write-Error "尝试检索和分析所有系统设置 XML 时出错。必须跳过收集深度链接。"
         Write-Error ": $_"
         return $null
     }
@@ -3081,7 +3083,7 @@ function Get-And-Process-URL-Protocols {
     $protocolAppxData = $arrayProtocolAndAppxData.UrlProtocolData
     $associatedProtocolsPerApp = $arrayProtocolAndAppxData.AssociatedProtocolsPerApp
 
-    Write-host "Appx Data Count: $($protocolAppxData.Count)"
+    Write-host "Appx数据计数: $($protocolAppxData.Count)"
 
     # This makes it so Appx details are preferred over original existing
     $urlProtocolDataPreferredAppx = Make-DeepCopy $urlProtocolDataOriginal
@@ -3365,7 +3367,7 @@ function Search-HiddenLinks {
     $resultsAppx = @()
     if ($Verbose -or $timing) { $stopwatch = [System.Diagnostics.Stopwatch]::StartNew() }
     
-    Write-Host "[1/2] Searching Appx Program Files for Hidden Links:"
+    Write-Host "[1/2] 搜索Appx程序文件中的隐藏链接:"
     foreach ($appPackage in $packagesToSearch) {
         #DEBUGGING ONLY - Limit the number of packages to search to get to the next part faster
         #if ($resultsAppx.Count -gt 3) { Write-Host "DEBUGGING ONLY - Limiting number of packages to search. IF YOU SEE THIS I FORGOT TO TAKE THIS OUT!"; break }
@@ -3557,7 +3559,7 @@ function Search-HiddenLinks {
     # Get total files to search in other program folders. There might be duplicate folders, but we need to still count them because they'll be searched separately
     $totalFiles = 0
     [Int64]$totalFilesSize = 0
-    Write-Host "`nCreating list of files to search for hidden links in non-Appx-package programs..`n"
+    Write-Host "`n正在创建文件列表以搜索非Appx程序包中的隐藏链接...`n"
     foreach ($program in $programFilesSearchData) {
         $files = @()
         $folder = $program.InstallLocation
@@ -3636,7 +3638,7 @@ function Search-HiddenLinks {
     $resultsNonAppx = @()
     if ($Verbose -or $timing) { $stopwatch = [System.Diagnostics.Stopwatch]::StartNew() }
 
-    Write-Host "`n[2/2] Searching Non-Appx Program Files for Hidden Links:"
+    Write-Host "`n[2/2] 搜索非Appx程序文件中的隐藏链接:"
     foreach ($itemToSearch in $programFilesSearchData) {
         # Search Display Location
         $protocolsString = $itemToSearch.Protocols -join ", "
@@ -3700,14 +3702,14 @@ function Get-ProtocolsInProgramFiles {
         $totalFilesSizeMB = ("{0:N0}" -f ($totalFilesSize / 1MB))
         $processedFileSizeMB = ("{0:N0}" -f ($processedFilesSize / 1MB)).PadLeft($totalFilesSizeMB.Length) # Pad to the length of the total size so it doesn't jump around
         $processedFilesString = $processedFiles.ToString().PadLeft($totalFiles.ToString().Length)
-        Write-Host "`r   Search Progress: $($currentPercentageDetailed.ToString("F2"))%".PadLeft(7) -NoNewline
+        Write-Host "`r   搜索进度: $($currentPercentageDetailed.ToString("F2"))%".PadLeft(7) -NoNewline
         Write-Host "   ($processedFilesString / $totalFiles files   |   $processedFileSizeMB / $totalFilesSizeMB MB ) "  -NoNewline
     }
     else {
         if (-not $psISE){
-            Write-Host "`r   Search Progress: $currentPercentage% " -NoNewline
+            Write-Host "`r   搜索进度: $currentPercentage% " -NoNewline
         } else {
-            Write-Progress -Activity "Searching Files" -Status "Progress: $currentPercentage%" -PercentComplete $currentPercentage
+            Write-Progress -Activity "查找文件中" -Status "进度: $currentPercentage%" -PercentComplete $currentPercentage
         }
     }
 
@@ -3779,15 +3781,15 @@ function Get-ProtocolsInProgramFiles {
                 $totalFilesSizeMB = ("{0:N0}" -f ($totalFilesSize / 1MB))
                 $processedFileSizeMB = ("{0:N0}" -f ($processedFilesSize / 1MB)).PadLeft($totalFilesSizeMB.Length) # Pad to the length of the total size so it doesn't jump around
                 $processedFilesString = $processedFiles.ToString().PadLeft($totalFiles.ToString().Length)
-                Write-Host "`r   Search Progress: $($currentPercentageDetailed.ToString("F2"))%".PadLeft(7) -NoNewline
+                Write-Host "`r   搜索进度: $($currentPercentageDetailed.ToString("F2"))%".PadLeft(7) -NoNewline
                 Write-Host "   ($processedFilesString / $totalFiles files   |   $processedFileSizeMB / $totalFilesSizeMB MB ) "  -NoNewline
             }
             else {
                 if (-not $psISE) {
-                    Write-Host "`r   Search Progress: $currentPercentage% " -NoNewline
+                    Write-Host "`r   搜索进度: $currentPercentage% " -NoNewline
                 }
                 else {
-                    Write-Progress -Activity "Searching Files" -Status "Progress: $currentPercentage%" -PercentComplete $currentPercentage
+                    Write-Progress -Activity "查找文件中" -Status "进度: $currentPercentage%" -PercentComplete $currentPercentage
                 }
             }
             $lastPercentage = $currentPercentage
@@ -3969,13 +3971,13 @@ if (-not $SkipCLSID) {
 
 # Loop for special named folders
 if (-not $SkipNamedFolders) {
-    Write-Host "`n----- 正在处理特殊命名文件夹 -----"
+    Write-Host "`n----- 正在处理特殊名称文件夹 -----"
 
     try {
         # Retrieve all named special folders from the registry.
         $namedFolders = Get-ChildItem -Path "Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions"
     } catch {
-        Write-Error "从注册表检索命名文件夹时出错`: $_"
+        Write-Error "从注册表检索特殊名称文件夹时出错`: $_"
         $namedFolders = $null
     }
 
@@ -3986,7 +3988,7 @@ if (-not $SkipNamedFolders) {
         $iconPath = $folderProperties.Icon  # Extract the custom icon path (if any).
 
         if ($folderName) {
-            Write-Verbose "正在处理命名文件夹: $folderName"
+            Write-Verbose "正在处理特殊名称文件夹: $folderName"
 
             # Sanitize the folder name to make it a valid filename.
             $sanitizedName = $folderName -replace '[\\/:*?"<>|]', '_'
@@ -3996,10 +3998,10 @@ if (-not $SkipNamedFolders) {
             $success = Create-NamedShortcut -name $folderName -shortcutPath $shortcutPath -iconPath $iconPath
 
             if ($success) {
-                Write-Host "创建命名文件夹快捷方式成功: $folderName"
+                Write-Host "创建特殊名称文件夹快捷方式成功: $folderName"
             }
             else {
-                Write-Host "创建命名文件夹快捷方式失败: $folderName"
+                Write-Host "创建特殊名称文件夹快捷方式失败: $folderName"
             }
         }
         else {
@@ -4258,15 +4260,15 @@ if (-not $NoStatistics) {
 # Output results
 if ($displayCsvFiles -or $displayXmlFiles) {
     Write-Host "`n--------------------------------------------------------------------------------"
-    Write-Host "统计文件和XML数据保存在文件夹: `"$statisticsFolderName`""
+    Write-Host "统计数据保存在文件夹: `"$statisticsFolderName`""
 
     if ($displayCsvFiles) {
-        Write-Host "`n   - CSV Files:"
+        Write-Host "`n   - CSV 文件:"
         Format-FileGrid -fileNames $displayCsvFiles -Indent 7
     }
 
     if ($displayXmlFiles) {
-        Write-Host "`n   - XML Files:"
+        Write-Host "`n   - XML 文件:"
         Format-FileGrid -fileNames $displayXmlFiles -Indent 7
     }
 }
@@ -4290,11 +4292,11 @@ Write-Host   "------------------------------------------------`n"
 Write-Host "         创建的快捷方式总数: " -NoNewline
 Write-Host $totalCount -ForegroundColor Green
 
-Write-Host "           > CLSID 链接:      " -NoNewline
+Write-Host "           > CLSID 链接:       " -NoNewline
 Write-Host $clsidInfo.Count -ForegroundColor Cyan -NoNewline
 Write-Host $(if ($SkipCLSID) { "   (跳过)" }) # If skipped, add the skipped text, otherwise still write empty string because we used -NoNewline previously
 
-Write-Host "           > 特殊文件夹:  " -NoNewline
+Write-Host "           > 特殊文件夹:       " -NoNewline
 Write-Host $namedFolders.Count -ForegroundColor Cyan -NoNewline
 Write-Host $(if ($SkipNamedFolders) { "   (跳过)" })
 
@@ -4302,7 +4304,7 @@ Write-Host "           > 任务链接:       " -NoNewline
 Write-Host $taskLinks.Count -ForegroundColor Cyan -NoNewline
 Write-Host $(if ($SkipTaskLinks) { "   (跳过)" })
 
-Write-Host "           > 设置链接:   " -NoNewline
+Write-Host "           > 设置链接:       " -NoNewline
 Write-Host $msSettingsList.Count -ForegroundColor Cyan -NoNewline
 Write-Host $(if ($SkipMSSettings) { "   (跳过)" })
 
@@ -4310,11 +4312,11 @@ Write-Host "           > 深度链接:       " -NoNewline
 Write-Host $deepLinksProcessedData.Count -ForegroundColor Cyan -NoNewline
 Write-Host $(if ($SkipDeepLinks) { "   (跳过)" })
 
-Write-Host "           > URL 协议:    " -NoNewline
+Write-Host "           > URL 协议:       " -NoNewline
 Write-Host $URLProtocolsData.Count -ForegroundColor Cyan -NoNewline
 Write-Host $(if ($SkipURLProtocols) { "   (跳过)" })
 
-Write-Host "           > 隐藏应用链接: " -NoNewline
+Write-Host "           > 隐藏的应用链接:  " -NoNewline
 Write-Host $appXURLSearchResultsCreated.Count -ForegroundColor Cyan -NoNewline
 Write-Host $(if ($SkipHiddenAppLinks -or $SkipURLProtocols) { "   (跳过)" })
 
