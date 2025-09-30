@@ -4289,34 +4289,34 @@ Write-Host   "      Windows Super God Mode 脚本执行结果     " -ForeGroundC
 Write-Host   "------------------------------------------------`n"
 
 # Output the total counts of each, and color the numbers to stand out. Done by writing the text and then the number separately with -NoNewLine. If it was skipped, also add that but not colored.
-Write-Host "         创建的快捷方式总数: " -NoNewline
+Write-Host "         创建的快捷方式总数:  " -NoNewline
 Write-Host $totalCount -ForegroundColor Green
 
-Write-Host "           > CLSID 链接:       " -NoNewline
+Write-Host "           > CLSID 链接:              " -NoNewline
 Write-Host $clsidInfo.Count -ForegroundColor Cyan -NoNewline
 Write-Host $(if ($SkipCLSID) { "   (跳过)" }) # If skipped, add the skipped text, otherwise still write empty string because we used -NoNewline previously
 
-Write-Host "           > 特殊文件夹:       " -NoNewline
+Write-Host "           > 特殊文件夹:              " -NoNewline
 Write-Host $namedFolders.Count -ForegroundColor Cyan -NoNewline
 Write-Host $(if ($SkipNamedFolders) { "   (跳过)" })
 
-Write-Host "           > 任务链接:       " -NoNewline
+Write-Host "           > 任务链接:                  " -NoNewline
 Write-Host $taskLinks.Count -ForegroundColor Cyan -NoNewline
 Write-Host $(if ($SkipTaskLinks) { "   (跳过)" })
 
-Write-Host "           > 设置链接:       " -NoNewline
+Write-Host "           > 设置链接:                  " -NoNewline
 Write-Host $msSettingsList.Count -ForegroundColor Cyan -NoNewline
 Write-Host $(if ($SkipMSSettings) { "   (跳过)" })
 
-Write-Host "           > 深度链接:       " -NoNewline
+Write-Host "           > 深度链接:                     " -NoNewline
 Write-Host $deepLinksProcessedData.Count -ForegroundColor Cyan -NoNewline
 Write-Host $(if ($SkipDeepLinks) { "   (跳过)" })
 
-Write-Host "           > URL 协议:       " -NoNewline
+Write-Host "           > URL 协议:                  " -NoNewline
 Write-Host $URLProtocolsData.Count -ForegroundColor Cyan -NoNewline
 Write-Host $(if ($SkipURLProtocols) { "   (跳过)" })
 
-Write-Host "           > 隐藏的应用链接:  " -NoNewline
+Write-Host "           > 隐藏的应用链接:        " -NoNewline
 Write-Host $appXURLSearchResultsCreated.Count -ForegroundColor Cyan -NoNewline
 Write-Host $(if ($SkipHiddenAppLinks -or $SkipURLProtocols) { "   (跳过)" })
 
