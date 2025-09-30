@@ -23,8 +23,6 @@
 <img width="392" alt="Output Folders" src="https://github.com/user-attachments/assets/898efc48-ddc6-4875-b906-b89963d5778e">
 </p>
 
-
-
 ## 特点
 
 - 为各种 Windows 组件创建快捷方式：
@@ -43,6 +41,7 @@
 ## 使用说明:
 
 ### 方法 1 (更简单): 使用 .bat 启动器
+
 1. 点击页面上部的绿色按钮 `< > Code` ，在弹出的选项中选择 `Download ZIP`。 
 2. 解压下载的 `Windows-Super-God-Mode-Chinese-ver-main.zip` ，确保 `SuperGodMode-EasyLauncher.bat` 和 `Super_God_Mode.ps1` 两个脚本均解压完毕且处于同一目录下。 
 3. 运行 `SuperGodMode-EasyLauncher.bat` 。
@@ -50,18 +49,24 @@
 ### 方法 2: 手动运行
 
 1. 下载脚本 `Super_God_Mode.ps1` 。 ( [下载链接](https://raw.githubusercontent.com/Short-Arm-Ape/Windows-Super-God-Mode-Chinese-ver/refs/heads/main/Super_God_Mode.ps1))
-2. 打开 PowerShell 到包含脚本的目录。（小贴士：在文件资源管理器中，只需在地址栏中键入“PowerShell.exe”即可将其打开到该路径）。
+
+2. 打开 PowerShell 到包含脚本的目录。（小贴士：在文件资源管理器中，只需在地址栏中键入 “PowerShell.exe” 即可将其打开到该路径）。
+
 3. 运行以下命令以允许暂时执行当前会话的脚本： 
+   
    ```
    Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
    ```
-   ➤ **注意:** 你可能会看到有关更改执行策略的警告，但命令中的 `-Scope Process` 参数确保更改只是临时的，并且仅应用于该特定PowerShell窗口，因此您可以选择允许。您可以在 [本文](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-5.1#-scope) 中阅读更多内容. 
    
-5. 运行该脚本:
+   ➤ **注意:** 你可能会看到有关更改执行策略的警告，但命令中的 `-Scope Process` 参数确保更改只是临时的，并且仅应用于该特定 PowerShell 窗口，因此您可以选择允许。您可以在 [本文](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-5.1#-scope) 中阅读更多内容. 
+
+4. 运行该脚本:
+   
    ```
    .\Super_God_Mode.ps1
    ```
-   - 如果未提供参数，则会出现一个 GUI，以便于配置。
+   
+   - 如果未提供参数，则会出现一个 GUI ，以便于配置。
    - 您还可以使用可选参数运行脚本（见下文）。
 
 ## 演示视频：
@@ -70,70 +75,71 @@
 
 <p align="center"><a href="https://www.youtube.com/watch?v=CnATL9kJPn8"> <img width="750" src="https://github.com/user-attachments/assets/1d5d5c88-aa50-4909-845a-8598e759a6b7"></a></p>
 
-<p align="center">(点击该链接将跳转至 YouTube。请参阅视频说明中的时间戳。)</p>
-
+<p align="center">(点击该链接将跳转至 YouTube 。请参阅视频说明中的时间戳。)</p>
 
 ## 命令行参数
 
-Note: 除了 `-Debug` 和 `-Verbose` 以外, 你必须使用 `-NoGUI` 以使参数生效
+注意: 除了 `-Debug` 和 `-Verbose` 以外, 你必须使用 `-NoGUI` 以使参数生效
 
-#### Alternative Options Arguments
+#### 可选参数
 
-- `-DontGroupTasks`: Prevent grouping task shortcuts by application name
-- `-UseAlternativeCategoryNames`: Use alternative category names for task links
-- `-AllURLProtocols`: Include third-party URL protocols from installed software
-- `-DeepScanHiddenLinks`: Scans for hidden links in all files in the install directory of non-appx-package apps, otherwise only the main binary file is searched.
-- `-CollectExtraURLProtocolInfo`: Collect additional information about URL protocols
-- `-AllowDuplicateDeepLink`: Will not skip Deep Link shortcuts that are exactly the same as an existing task link
+- `-DontGroupTasks`: 阻止按应用程序名称对任务快捷方式进行分组
+- `-UseAlternativeCategoryNames`: 为任务链接使用备选类别名称
+- `-AllURLProtocols`: 包含已安装软件中的第三方 URL 协议
+- `-DeepScanHiddenLinks`: 扫描非 AppX 软件包应用程序安装目录中所有文件中的隐藏链接，否则只搜索主二进制文件。
+- `-CollectExtraURLProtocolInfo`: 收集有关 URL 协议的其他信息
+- `-AllowDuplicateDeepLink`: 不会跳过与现有任务链接完全相同的深度链接快捷方式
 
-#### Control Output
+#### 控制输出
 
-- `-Output`: Specify a custom output folder path
-- `-KeepPreviousOutputFolders`: Don't auto-delete existing output folders before running
+- `-Output`: 指定自定义输出文件夹路径
+- `-KeepPreviousOutputFolders`: 运行前不要自动删除现有的输出文件夹
 
-#### Arguments to Limit Shortcut Creation
+#### 限制快捷方式创建的参数
 
-- `-NoStatistics`: Don't create statistics folder and files
-- `-NoReadMe`: Don't create tips text file
-- `-SkipCLSID`: Skip creating shortcuts for CLSID-based shell folders
-- `-SkipNamedFolders`: Skip creating shortcuts for named special folders
-- `-SkipTaskLinks`: Skip creating shortcuts for task links
-- `-SkipMSSettings`: Skip creating shortcuts for ms-settings: links
-- `-SkipDeepLinks`: Skip creating shortcuts for deep links
-- `-SkipURLProtocols`: Skip creating shortcuts for URL protocols
-- `-SkipHiddenAppLinks`: Skip creating shortcuts to hidden app links
+- `-NoStatistics`: 不创建统计文件夹和文件
+- `-NoReadMe`: 不创建提示文本文件
+- `-SkipCLSID`: 跳过为基于 CLSID 的 shell 文件夹创建快捷方式
+- `-SkipNamedFolders`: 跳过为指定的特殊文件夹创建快捷方式
+- `-SkipTaskLinks`: 跳过为任务链接创建快捷方式
+- `-SkipMSSettings`: 跳过为 ms-settings: 创建快捷方式
+- `-SkipDeepLinks`: 跳过为深度链接创建快捷方式
+- `-SkipURLProtocols`: 跳过为URL协议创建快捷方式
+- `-SkipHiddenAppLinks`: 跳过创建隐藏应用链接的快捷方式
 
-#### Debugging
+#### 调试
 
-- `-Verbose`: Enable verbose output. Can be used with or without `-NoGUI`.
-- `-Debug`: Enable debug output (also enables verbose output). Can be used with or without `-NoGUI`.
-- `-timing`: Enable timing output to show how long each section of the script takes to run. Also enabled by verbose/debug switches.
-- `-debugSkipAppxSearch`: Skip searching for hidden links in AppX packages, and only search for non-appx programs.
-- `-debugSearchOnlyProtocolList`: Specify a comma-separated list of URL protocols (surrounded by quotes) to search for, and no others.
-- `uniqueOutputFolder`: Append a unique identifier to the output folder name to prevent overwriting existing folders.
+- `-Verbose`: 启用详细输出。可以与 `-NoGUI` 一起使用或不一起不使用。
+- `-Debug`: 启用调试输出（也启用详细输出）。可以与 `-NoGUI` 一起使用或不一起使用。
+- `-timing`: 启用计时输出以显示脚本的每个部分运行所需的时间。也通过详细/调试开关启用。
+- `-debugSkipAppxSearch`: 跳过在AppX包中搜索隐藏链接，只搜索非AppX程序。
+- `-debugSearchOnlyProtocolList`: 指定一个逗号分隔的URL协议列表（用引号括起来）进行搜索，而不指定其他协议。
+- `uniqueOutputFolder`: 在输出文件夹名称后附加一个唯一标识符，以防止覆盖现有文件夹。
 
-#### Advanced Arguments
+#### 高级参数
 
-- `-NoGUI`: Skip the GUI dialog and run with default or provided parameters
-- `-CustomDLLPath`: Specify a custom DLL file path for shell32.dll
+- `-NoGUI`: 跳过GUI对话框，使用默认或提供的参数运行
+- `-CustomDLLPath`: 为 shell32.dll 指定自定义 DLL 文件路径
 - `-CustomLanguageFolderPath`: Specify a path to a folder containing language-specific MUI files
 - `-CustomSystemSettingsDLLPath`: Specify a custom path to the SystemSettings.dll file
 - `-CustomAllSystemSettingsXMLPath`: Specify a custom path to the "AllSystemSettings_" XML file
 
-### Example
+### 示例
 
 ```powershell
 .\Super_God_Mode.ps1 -Output "C:\SuperGodMode" -AllURLProtocols -Verbose
 ```
 
-## Notes
+## 注意
 
-- Some shortcuts may not work on all Windows versions due to differences in available features.
-- The script does not modify any system settings; it only creates shortcuts to existing Windows features.
-- All parameters and GUI settings are optional. The script will run with default settings if the user doesn't change anything.
+- 由于可用功能的差异，某些快捷方式可能无法在所有Windows版本上运行。
+- 该脚本不会修改任何系统设置；它只创建现有Windows功能的快捷方式。
+- 所有参数和GUI设置都是可选的。如果用户不更改任何内容，脚本将使用默认设置运行。
 
-## Frequently Asked Questions
-- See Wiki Page for FAQs: https://github.com/ThioJoe/Windows-Super-God-Mode/wiki/Frequently-Asked-Questions
+## 常见问题
+
+- 常见问题请参阅 Wiki 页面: https://github.com/ThioJoe/Windows-Super-God-Mode/wiki/Frequently-Asked-Questions
+
 ___
 
 # 拓展工具
@@ -142,47 +148,56 @@ ___
 
 ### Get_DLL_String_Reference.ps1
 
-This script allows you to easily retrieve the localized string of a single specific string reference.
+此脚本允许您轻松检索单个特定字符串引用的本地化字符串。
 
-Features:
-- Interactively prompts for string references
-- Resolves and displays the localized string values
-- Supports the `@dllpath,-resourceID` format
+特性:
 
-Usage:
-1. Run the script in PowerShell
-2. Enter the string reference when prompted (e.g., `@%SystemRoot%\system32\shell32.dll,-9227`)
-3. The script will display the resolved string value
+- 交互式提示字符串引用
+- 解析并显示本地化字符串值
+- 支持 `@dllpath,-resourceID` 格式
+
+用法:
+
+1. 在 PowerShell 运行此脚本
+2. 出现提示时输入字符串引用 (例如, `@%SystemRoot%\system32\shell32.dll,-9227`)
+3. 脚本将显示解析的字符串值
 
 ### Windows_XML_String_Resolver.ps1
 
-This script processes entire XML files containing Windows string references and resolves them to their actual string values. Mostly intended to be used with the XML from shell32.dll.mun containing all the Windows task links.
+此脚本处理包含 Windows 字符串引用的整个XML文件，并将其解析为实际的字符串值。主要用于包含所有 Windows 任务链接的 shell32.dll.mun 中的 XML 。
 
-Features:
-- Processes entire XML files, replacing string references with their resolved values
-- Supports custom DLL paths for resolving strings
-- Generates a new XML file with resolved strings
+特性:
 
-Usage:
+- 处理整个 XML 文件，用解析值替换字符串引用
+- 支持解析字符串的自定义 DLL 路径
+- 生成具有解析字符串的新 XML 文件
+
+用法:
+
 ```powershell
 .\Windows_XML_String_Resolver.ps1 -XmlFilePath "path\to\your\file.xml" [-CustomResourcePaths "shell32=C:\custom\path\shell32.dll", "user32=C:\another\path\user32.mui"] [-Debug]
 ```
 
 ### Get-MS-Settings-Strings.ps1
 
-This script will find text strings of "ms-settings:" in a DLL file and output them to a text file. 
-It is a standalone version of the feature built into the main script. Intended mainly for: "C:\Windows\ImmersiveControlPanel\SystemSettings.dll".
+此脚本将在DLL文件中查找 "ms-settings:" 的文本字符串，并将其输出到文本文件。 
+它是内置于主脚本中的功能的独立版本。主要用于：
 
-Usage:
+"C:\Windows\ImmersiveControlPanel\SystemSettings.dll".
+
+用法:
+
 ```
 `.\Get-MS-Settings-Strings.ps1 -DllPath "C:\Windows\ImmersiveControlPanel\SystemSettings.dll" -OutputFilePath "SystemSettings-MS-Settings.txt"
 ```
-- If not specified via arguments, the script will prompt the user for the DLL path, and output to the same directory as the script.
+
+- 如果未通过参数指定路径，脚本将提示用户输入 DLL 路径，并输出到与脚本相同的目录。
 
 ### Find_URLs_From_AppxPackage_Files.ps1
 
-This script fetches the URI protocols for each installed AppxPackage via their AppxManifest.xml file, then brute force searches for those URIs in all files in the app's install directory.
-It is a standalone version of the feature built into the main script, but might not be up to date!
+此脚本通过每个已安装的 AppxPackage 的 AppxManifest.xml 文件获取其 URI 协议，然后在应用程序安装目录中的所有文件中暴力搜索这些URI。
+它是内置于主脚本中的功能的独立版本，但可能不是最新的！
 
-Usage:
-- No arguments necessary:  `.\Find_URLs_From_AppxPackage_Files.ps1`
+用法:
+
+- 无需参数:  `.\Find_URLs_From_AppxPackage_Files.ps1`

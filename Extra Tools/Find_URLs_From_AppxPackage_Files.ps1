@@ -1,6 +1,6 @@
-# This script fetches the URI protocols for each installed AppxPackage via their AppxManifest.xml file, then brute force searches for those URIs in all files in the app's install directory.
+# 此脚本通过每个已安装的 AppxPackage 的 AppxManifest.xml 文件获取其URI协议，然后在应用程序安装目录中的所有文件中暴力搜索这些URI。
 
-# Function to get app details including URI protocols and install paths
+# 获取应用程序详细信息的函数，包括URI协议和安装路径
 function Get-AppDetails {
     $result = [System.Collections.ArrayList]@()
     foreach ($appx in Get-AppxPackage) {
@@ -36,7 +36,7 @@ function Get-AppDetails {
     return $result
 }
 
-# Define encoding mappings for different file extensions
+# 为不同的文件扩展名定义编码映射
 $encodingMap = @{
     ".txt"  = "UTF-8"
     ".xml"  = "UTF-8"
@@ -45,7 +45,7 @@ $encodingMap = @{
     ".exe"  = "Unicode"
     ".js"   = "UTF-8"
     ".map"  = "UTF-8"
-    # Add more mappings as needed
+    # 根据需要添加更多映射
 }
 
 function Get-ProtocolsInFile {
@@ -59,7 +59,7 @@ function Get-ProtocolsInFile {
     )
 
     if (-not (Test-Path $filePathToCheck)) {
-        Write-Error "File not found: $filePathToCheck"
+        Write-Error "未找到文件: $filePathToCheck"
         return $null
     }
 
@@ -80,7 +80,7 @@ function Get-ProtocolsInFile {
             $content = [System.IO.File]::ReadAllText($filePathToCheck, $encoding)
 
             foreach ($protocol in $protocolsList) {
-                # Different patterns for UTF-8 and Unicode
+                # UTF-8和Unicode的不同模式
                 if ($encodingName -eq "UTF-8") {
                     $uriPattern = [regex]::Escape($protocol) + "://[^""\s<>()\\``]+"
                 } else {
@@ -90,9 +90,9 @@ function Get-ProtocolsInFile {
                 $matches = [regex]::Matches($content, $uriPattern, [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
 
                 if ($matches.Count -gt 0) {
-                    # Store the matches along with the encoding used and other data
+                    # 将匹配项与使用的编码和其他数据一起存储
                     $results[$protocol] = @($matches | ForEach-Object {
-                        # If the match contains a bracket, or ends with an equals sign, mark it as "UsesVariables"
+                        # 如果匹配包含括号或以等号结束，将其标记为 "UsesVariables"
                         $usesVariables = $_.Value -match "[<>()\[\]]|=$"
 
                         [PSCustomObject]@{
@@ -104,13 +104,13 @@ function Get-ProtocolsInFile {
                 }
             }
 
-            # If we found matches, no need to try other encodings
+            # 如果找到匹配项，则无需尝试其他编码
             if ($results.Count -gt 0) {
                 break
             }
         }
         catch {
-            Write-Warning "Error processing file $filePathToCheck with $encodingName encoding: $_"
+            Write-Warning "使用 $encodingName 编码处理文件 $filePathToCheck 时出错: $_"
         }
     }
 
@@ -131,37 +131,37 @@ function OutputCSV {
 
     try {
         $data | Export-Csv -Path $outputPath -NoTypeInformation
-        Write-Host "Results exported to: $outputPath"
+        Write-Host "结果导出至: $outputPath"
     }
     catch {
-        Write-Error "Error exporting to CSV: $_"
-        $outputPath = Read-Host "`nEnter the path to save the CSV file"
+        Write-Error "导出至 CSV 时出错: $_"
+        $outputPath = Read-Host "`n输入 CSV 文件保存路径"
         $outputPath = $outputPath.Trim('"')
         if (-not (Test-Path $outputPath)) {
             New-Item -Path $outputPath -ItemType File -Force | Out-Null
         }
         $data | Export-Csv -Path $outputPath -NoTypeInformation
-        Write-Host "If there was no error, results exported to: $outputPath"
+        Write-Host "如果没有错误，则将结果导出到: $outputPath"
     }
 }
 
-# Main script execution
+# 主脚本执行
 $appDetails = Get-AppDetails
 
 $results = @()
 $searchedFiles = @()
 
-# Define ignored file extensions
+# 定义忽略的文件扩展名
 $ignoredExtensions = @(
-    # Images
+    # 图像
     '.png', '.jpg', '.jpeg', '.gif', '.bmp', '.svg', ".ico",
-    # Other irrelevant file types
+    # 其他不相关的文件类型
     ".p7x", ".ttf", ".onnxe",
-    # Compressed or other files that don't produce reliable results
+    # 压缩或其他不产生可靠结果的文件
     ".bundle", '.vsix'
 )
 
-# Main script execution
+# 主脚本执行
 $appDetails = Get-AppDetails
 
 $results = @()
@@ -172,12 +172,12 @@ $totalFiles = ($appDetails | ForEach-Object {
 }).Count
 
 $processedFiles = 0
-$lastPercentage = -1  # Initialize to -1 to ensure the first 0% is displayed
+$lastPercentage = -1  # 初始化为 -1 以确保初始显示 0%
 $processedFiles = 0
 $currentPercentage = 0
 
 foreach ($app in $appDetails) {
-    Write-Verbose "`rSearching in $($app.Name) | For URIs: $($app.URIs -join ', ')"
+    Write-Verbose "`r搜索 $($app.Name) | URIs: $($app.URIs -join ', ')"
     $files = Get-ChildItem -Path $app.Folder -Recurse -File | Where-Object { $_.Extension -notin $ignoredExtensions }
     foreach ($file in $files) {
         $searchedFiles += $file.FullName
@@ -188,15 +188,15 @@ foreach ($app in $appDetails) {
         $processedFiles++
         $currentPercentage = [math]::Floor(($processedFiles / $totalFiles) * 100)
         if ($currentPercentage -ne $lastPercentage) {
-            Write-Host "`rProgress: $currentPercentage%" -NoNewline
+            Write-Host "`r进度: $currentPercentage%" -NoNewline
             $lastPercentage = $currentPercentage
         }
     }
 }
 
-Write-Host "`nProcessing complete.$(" " * $paddingLength)"
+Write-Host "`n处理完毕.$(" " * $paddingLength)"
 
-# Prepare data for CSV export
+# 准备 CSV 导出数据
 $csvData = @()
 foreach ($result in $results) {
     if ($result -and $result.Matches) {
@@ -214,23 +214,23 @@ foreach ($result in $results) {
     }
 }
 
-# Create the output directory if it doesn't exist
+# 如果输出目录不存在，则创建该目录
 $outputDir = ".\ProtocolMatches"
 if (-not (Test-Path $outputDir)) {
     New-Item -Path $outputDir -ItemType Directory -Force | Out-Null
 }
 
-# Get date to use in the output file names
+# 获取用于输出文件名的日期
 $date = Get-Date -Format 'yyyyMMdd_HHmmss'
 
-# Export searched files list
+# 导出搜索的文件列表
 $searchedFilesPath = Join-Path $outputDir "files_searched_$date.txt"
 $searchedFiles | Out-File -FilePath $searchedFilesPath -Encoding utf8
 
-# Export to CSV
+# 导出至 CSV
 $outputPath = Join-Path $outputDir "protocol_matches_$date.csv"
 
 OutputCSV -data $csvData -outputPath $outputPath
 
-Write-Host "Searched files list exported to: $searchedFilesPath"
-Write-Host "Protocol matches exported to: $outputPath"
+Write-Host "搜索的文件列表导出至: $searchedFilesPath"
+Write-Host "协议匹配导出至: $outputPath"

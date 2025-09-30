@@ -749,7 +749,7 @@ if ($Debug) {
         "无自述文件: $NoReadMe`n跳过CLSID: $SkipCLSID`n跳过命名文件夹: $SkipNamedFolders`n" +
         "跳过任务链接: $SkipTaskLinks`n跳过MS设置: $SkipMSSettings`n跳过深度链接: $SkipDeepLinks`n" +
         "跳过URL协议: $SkipURLProtocols`n跳过隐藏应用链接: $SkipHiddenAppLinks`n详细: $Verbose`n" +
-        "调试: $Debug`ntiming: $timing`n调试跳过Appx搜索: $debugSkipAppxSearch`n" +
+        "调试: $Debug`n计时: $timing`n调试跳过Appx搜索: $debugSkipAppxSearch`n" +
         "调试仅搜索协议列表: $debugSearchOnlyProtocolList`n唯一输出文件夹: $uniqueOutputFolder`n" +
         "无GUI: $NoGUI`n自定义动态链接库路径: $CustomDLLPath`n自定义语言文件夹路径: $CustomLanguageFolderPath`n" +
         "自定义系统设置动态链接库路径: $CustomSystemSettingsDLLPath`n自定义所有系统设置XML路径: $CustomAllSystemSettingsXMLPath")

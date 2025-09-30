@@ -1,6 +1,6 @@
-# Checks if current PowerShell environment already has 'Win32' type defined, and if not add definition for it
-# Otherwise it will throw an error if it was already added like if the script is re-ran without closing the Window sometimes
-# The 'Win32' type provides access to some key Windows API functions
+# 检查当前PowerShell环境是否已定义了 "Win32" 类型，如果没有，则添加其定义
+# 否则，如果已添加，它将抛出错误，就像有时在不关闭窗口的情况下重新运行脚本一样
+# "Win32" 类型提供对某些关键 Windows API 函数的访问
 if (-not ([System.Management.Automation.PSTypeName]'Win32').Type) {
 Add-Type -TypeDefinition @"
 using System;
@@ -34,7 +34,7 @@ function Get-LocalizedString {
         return Get-StringFromDll $dllPath $resourceId -Verbose:$VerbosePreference
     }
     else {
-        Write-Error "Invalid string reference format: $StringReference"
+        Write-Error "字符串引用格式无效: $StringReference"
         return
     }
 }
@@ -43,66 +43,66 @@ function Get-MsResource {
     param (
         [string]$ResourcePath
     )
-    Write-Verbose "Attempting to retrieve resource: $ResourcePath"
+    Write-Verbose "正在尝试检索资源: $ResourcePath"
     $stringBuilder = New-Object System.Text.StringBuilder 1024
     $result = [Win32]::SHLoadIndirectString($ResourcePath, $stringBuilder, $stringBuilder.Capacity, [IntPtr]::Zero)
     if ($result -eq 0) {
-        Write-Verbose "Successfully retrieved resource on first attempt"
+        Write-Verbose "成功在第一次尝试中检索资源"
         return $stringBuilder.ToString()
     } else {
-        Write-Verbose "Initial attempt failed with error code: $result. Trying alternative methods..."
+        Write-Verbose "初始尝试失败，错误代码: $result. 尝试其他方法..."
 
-        # Extract package name and resource URI
+        # 提取包名称和资源URI
         $packageFullName = ($ResourcePath -split '\?')[0].Trim('@{}')
         $resourceUri = ($ResourcePath -split '\?')[1]
-        Write-Verbose "Extracted package full name: $packageFullName"
-        Write-Verbose "Extracted resource URI: $resourceUri"
+        Write-Verbose "提取的包完整名称: $packageFullName"
+        Write-Verbose "提取的资源 URI: $resourceUri"
 
-        # Extract package name without version and architecture
+        # 提取不带版本和体系结构的包名称
         $packageName = ($packageFullName -split '_')[0]
-        Write-Verbose "Extracted package name: $packageName"
+        Write-Verbose "提取的包名称: $packageName"
 
-        # Find the package installation path
+        # 查找包安装路径
         $package = Get-AppxPackage | Where-Object { $_.Name -eq $packageName }
         if (-not $package) {
-            # If exact match fails, try matching by package family name
+            # 如果完全匹配失败，请尝试按包族名称进行匹配
             $packageFamilyName = ($packageFullName -split '_')[-1]
             $package = Get-AppxPackage | Where-Object { $_.PackageFamilyName -eq "${packageName}_$packageFamilyName" }
         }
 
         if ($package) {
             $packagePath = $package.InstallLocation
-            Write-Verbose "Package installation path: $packagePath"
+            Write-Verbose "包安装路径: $packagePath"
             $priPath = Join-Path $packagePath "resources.pri"
-            Write-Verbose "Attempting to use resources.pri at: $priPath"
+            Write-Verbose "尝试使用 resources.pri: $priPath"
             if (Test-Path $priPath) {
                 $newResourcePath = "@{" + $priPath + "?" + $resourceUri
-                Write-Verbose "New resource path: $newResourcePath"
+                Write-Verbose "新资源路径: $newResourcePath"
                 $result = [Win32]::SHLoadIndirectString($newResourcePath, $stringBuilder, $stringBuilder.Capacity, [IntPtr]::Zero)
                 if ($result -eq 0) {
-                    Write-Verbose "Successfully retrieved resource using resources.pri"
+                    Write-Verbose "成功使用 resources.pri 检索资源"
                     return $stringBuilder.ToString()
                 }
-                Write-Error "Failed to retrieve using resources.pri. Error code: $result"
+                Write-Error "使用 resources.pri 检索资源失败。错误代码: $result"
             } else {
-                Write-Verbose "resources.pri not found at expected location"
+                Write-Verbose "未找到预期位置的 resources.pri"
             }
         } else {
-            Write-Verbose "Package not found"
+            Write-Verbose "未找到包"
         }
 
-        # If still failed, try without the /resources/ folder
+        # 如果仍然失败，请尝试不使用 /resources/ 文件夹
         $resourceUriWithoutResources = $resourceUri -replace '/resources/', '/'
         $newResourcePath = "@{" + $priPath + "?" + $resourceUriWithoutResources
-        Write-Verbose "Attempting without /resources/ folder. New path: $newResourcePath"
+        Write-Verbose "尝试不使用 /resources/ 文件夹。新路径: $newResourcePath"
         $result = [Win32]::SHLoadIndirectString($newResourcePath, $stringBuilder, $stringBuilder.Capacity, [IntPtr]::Zero)
         if ($result -eq 0) {
-            Write-Verbose "Successfully retrieved resource without /resources/ folder"
+            Write-Verbose "成功检索不带 /resources/ 文件夹的资源"
             return $stringBuilder.ToString()
         }
-        Write-Host "Failed to retrieve without /resources/ folder. Error code: $result"
+        Write-Host "未能检索不带 /resources/ 文件夹的资源。错误代码: $result"
 
-        Write-Error "Failed to retrieve ms-resource: $ResourcePath. Error code: $result"
+        Write-Error "未能检索 ms-resource: $ResourcePath。错误代码: $result"
         return $null
     }
 }
@@ -113,10 +113,10 @@ function Get-StringFromDll {
         [string]$DllPath,
         [uint32]$ResourceId
     )
-    Write-Verbose "Attempting to load string from DLL: $DllPath, Resource ID: $ResourceId"
+    Write-Verbose "正在尝试从 DLL 加载字符串: $DllPath, 资源 ID: $ResourceId"
     $hModule = [Win32]::LoadLibrary($DllPath)
     if ($hModule -eq [IntPtr]::Zero) {
-        Write-Error "Failed to load library: $DllPath"
+        Write-Error "未能加载库: $DllPath"
         return
     }
 
@@ -124,30 +124,30 @@ function Get-StringFromDll {
     $result = [Win32]::LoadString($hModule, $ResourceId, $stringBuilder, $stringBuilder.Capacity)
 
     if ($result -ne 0) {
-        Write-Verbose "Successfully loaded string from DLL"
+        Write-Verbose "已成功从 DLL 加载字符串"
         return $stringBuilder.ToString()
     } else {
-        Write-Error "Failed to load string resource: $ResourceId from $DllPath"
+        Write-Error "未能从 $DllPath 加载字符串资源: $ResourceId"
     }
 }
 
-Write-Host "Enter 'x' at any time to exit the program."
+Write-Host "在任意时刻输入 x 退出程序。"
 while ($true) {
-    Write-Verbose "Verbose Mode."
+    Write-Verbose "详细模式。"
     Write-Host "`n------------------------------------------------------------------------"
-    Write-Host "Enter the string resource reference to get."
-    Write-Host " > Example 1: @%SystemRoot%\system32\shell32.dll,-9227"
-    Write-Host " > Example 2: @{windows?ms-resource://Windows.UI.SettingsAppThreshold/SearchResources/SystemSettings_CapabilityAccess_Gaze_UserGlobal/Description}"
-    Write-Host " > Example 3: @{Microsoft.SecHealthUI_8wekyb3d8bbwe?ms-resource://Microsoft.SecHealthUI/Resources/AccountTileMenuEntryAndTitle}"
-    Write-Host "`nResource Reference:  " -NoNewline
+    Write-Host "输入要获取的字符串资源引用。（输入 x 退出）"
+    Write-Host " > 示例 1: @%SystemRoot%\system32\shell32.dll,-9227"
+    Write-Host " > 示例 2: @{windows?ms-resource://Windows.UI.SettingsAppThreshold/SearchResources/SystemSettings_CapabilityAccess_Gaze_UserGlobal/Description}"
+    Write-Host " > 示例 3: @{Microsoft.SecHealthUI_8wekyb3d8bbwe?ms-resource://Microsoft.SecHealthUI/Resources/AccountTileMenuEntryAndTitle}"
+    Write-Host "`n资源引用:  " -NoNewline
     $userInput = Read-Host
     if ($userInput.ToLower() -eq 'x') {
-        Write-Host "Exiting the program. Goodbye!"
+        Write-Host "程序已退出。再见！"
         break
     }
     $localizedString = Get-LocalizedString $userInput
     if ($localizedString) {
-        Write-Host "`n   Returned Value: " -NoNewline
+        Write-Host "`n   返回值: " -NoNewline
         Write-Host $localizedString -ForegroundColor Yellow
     }
 }
