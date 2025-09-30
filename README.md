@@ -17,10 +17,12 @@
 ## 屏幕截图
 
 <p align="center">
-<img width="700" alt="GUI Window" src="https://github.com/user-attachments/assets/d318373c-d4d4-4521-bf57-8b4a4b4273ee">
+<img width="786" height="708" alt="QQ_1759251057389" src="https://github.com/user-attachments/assets/74d3e6ca-2626-4fb5-bbc2-cfbfb3a79467" />
 </p><p align="center">
-<img width="290" alt="Results" src="https://github.com/user-attachments/assets/4d01fbad-b597-4433-bd67-2638ded8a6ed">
-<img width="392" alt="Output Folders" src="https://github.com/user-attachments/assets/898efc48-ddc6-4875-b906-b89963d5778e">
+
+<img width="432" height="274" alt="QQ_1759251530530" src="https://github.com/user-attachments/assets/b822498c-a0dd-4f53-8f06-d98427cc1277" />
+<img width="519" height="264" alt="QQ_1759251443150" src="https://github.com/user-attachments/assets/25596058-b86a-4e4a-b5ae-247cefcb9c0a" />
+
 </p>
 
 ## 特点
@@ -146,7 +148,7 @@ ___
 
 `Extra Tools`文件夹包含补充Windows Super God Mode 脚本主要功能的其他脚本：
 
-### Get_DLL_String_Reference.ps1
+### `Get_DLL_String_Reference.ps1`
 
 此脚本允许您轻松检索单个特定字符串引用的本地化字符串。
 
@@ -162,7 +164,7 @@ ___
 2. 出现提示时输入字符串引用 (例如, `@%SystemRoot%\system32\shell32.dll,-9227`)
 3. 脚本将显示解析的字符串值
 
-### Windows_XML_String_Resolver.ps1
+### `Windows_XML_String_Resolver.ps1`
 
 此脚本处理包含 Windows 字符串引用的整个XML文件，并将其解析为实际的字符串值。主要用于包含所有 Windows 任务链接的 shell32.dll.mun 中的 XML 。
 
@@ -178,12 +180,12 @@ ___
 .\Windows_XML_String_Resolver.ps1 -XmlFilePath "path\to\your\file.xml" [-CustomResourcePaths "shell32=C:\custom\path\shell32.dll", "user32=C:\another\path\user32.mui"] [-Debug]
 ```
 
-### Get-MS-Settings-Strings.ps1
+### `Get-MS-Settings-Strings.ps1`
 
 此脚本将在DLL文件中查找 "ms-settings:" 的文本字符串，并将其输出到文本文件。 
 它是内置于主脚本中的功能的独立版本。主要用于：
 
-"C:\Windows\ImmersiveControlPanel\SystemSettings.dll".
+`"C:\Windows\ImmersiveControlPanel\SystemSettings.dll"`
 
 用法:
 
@@ -193,7 +195,7 @@ ___
 
 - 如果未通过参数指定路径，脚本将提示用户输入 DLL 路径，并输出到与脚本相同的目录。
 
-### Find_URLs_From_AppxPackage_Files.ps1
+### `Find_URLs_From_AppxPackage_Files.ps1`
 
 此脚本通过每个已安装的 AppxPackage 的 AppxManifest.xml 文件获取其 URI 协议，然后在应用程序安装目录中的所有文件中暴力搜索这些URI。
 它是内置于主脚本中的功能的独立版本，但可能不是最新的！
