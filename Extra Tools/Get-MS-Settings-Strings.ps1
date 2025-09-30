@@ -23,7 +23,7 @@ function Get-DllMsSettings {
     )
 
     if (-not (Test-Path $DllPath)) {
-        Write-Error "File not found: $DllPath"
+        Write-Error "未找到文件: $DllPath"
         return @()
     }
 
@@ -35,16 +35,16 @@ function Get-DllMsSettings {
         [void]$results.Add($match.Value)
     }
 
-    Write-Host "Unique Matches Found: $($results.Count)"
+    Write-Host "找到唯一匹配项: $($results.Count)"
     return $results | Sort-Object
 }
 
 # 如果没有提供DLL路径的参数，则提示用户
 if (-not $DllPath) {
-    Write-Host "`nEnter the path to the DLL file. Or press enter to use default path: C:\Windows\ImmersiveControlPanel\SystemSettings.dll"
-    $DllPath = Read-Host "`nEnter Path"
+    Write-Host "`n请输入DLL文件的路径。或者按回车键使用默认路径: C:\Windows\ImmersiveControlPanel\SystemSettings.dll"
+    $DllPath = Read-Host "`n输入路径"
     if (-not $DllPath) {
-        Write-Host "Using default path: C:\Windows\ImmersiveControlPanel\SystemSettings.dll"
+        Write-Host "使用默认路径: C:\Windows\ImmersiveControlPanel\SystemSettings.dll"
         $DllPath = "C:\Windows\ImmersiveControlPanel\SystemSettings.dll"
     }
 }
