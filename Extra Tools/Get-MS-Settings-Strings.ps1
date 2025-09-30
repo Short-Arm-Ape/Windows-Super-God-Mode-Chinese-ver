@@ -41,7 +41,7 @@ function Get-DllMsSettings {
 
 # 如果没有提供DLL路径的参数，则提示用户
 if (-not $DllPath) {
-    Write-Host "`n请输入DLL文件的路径。或者按回车键使用默认路径: C:\Windows\ImmersiveControlPanel\SystemSettings.dll"
+    Write-Host "`n请输入 DLL 文件的路径。或者按回车键使用默认路径: C:\Windows\ImmersiveControlPanel\SystemSettings.dll"
     $DllPath = Read-Host "`n输入路径"
     if (-not $DllPath) {
         Write-Host "使用默认路径: C:\Windows\ImmersiveControlPanel\SystemSettings.dll"
